@@ -28,7 +28,6 @@ function Login(props) {
       const user = res.data.user; // Adjust based on your backend response
       const authToken = Cookies.set("authToken",user.idToken,{
           secure: true,
-          expires: new Date(new Date().getTime() + 60 * 60 * 1000)
         });
 
       if (authToken) {
