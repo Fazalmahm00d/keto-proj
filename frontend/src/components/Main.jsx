@@ -11,10 +11,29 @@ import LocBanner from './LocBanner';
 import MenuItems from './MenuItems';
 import Mail from './Mail';
 import Footer from './Footer';
+import { useQuery } from '@tanstack/react-query';
+import { getAllProducts } from '../lib/productapi';
+import { useEffect, useState } from 'react';
 
 
 function Main(props) {
-  const data=[
+  const [menuItems, setMenuItems] = useState()
+  const { data: productData, isLoading, isError } = useQuery({
+    queryKey: ["get all products data"],
+    queryFn: () => getAllProducts(),
+    select: (data) => {
+      const products = data?.data?.products || [];
+      const shuffled = [...products];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      const selected = shuffled.slice(0, 4);
+      console.log(selected);
+      return selected;
+    }
+  });
+  const data1=[
       {
       img:'https://www.ketodelia.ca/cdn/shop/products/cauliflowerbites.jpg?v=1673029354&width=360',
       head:"Air Fried Keto Buffalo Cauliflower Bites", 
@@ -52,6 +71,9 @@ function Main(props) {
     }
 
   ]
+  useEffect(()=>{
+
+  },[])
   return (
     <div className='relative'>
       <Header className='sticky' Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
@@ -62,17 +84,18 @@ function Main(props) {
       <Cards data="Safe for Diabetes, Celiac, and Keto-Lovers Alike!"/>
       </div>
       <div className='flex flex-col w-full justify-center h-[680px] px-[50px] items-center'>
-        <div className='text-4xl font-bold text-[rgba(61,8,27,0.75)] '>Most Loved</div>
-        <div className='flex justify-center items-center w-full h-[100%] gap-[20px]'>
+        <div className='text-4xl m-10 font-bold text-[rgba(61,8,27,0.75)] '>Most Loved</div>
+        <div className='grid grid-cols-4 w-full h-[100%] gap-20 px-20'>
          {
-          data.map((items)=>{
+          productData?.map((items)=>{
             return <Categories data={items}/>
           })
          }
         </div>
       </div>
-      <div className='flex w-full justify-center h-[600px] p-[50px] items-center'>
-        <div className='flex justify-center items-center mt-10 gap-[30px]'>
+      <div className='w-full justify-center h-[600px] p-[50px] items-center'>
+        <h1 className='text-4xl text-center m-10 font-bold text-[rgba(61,8,27,0.75)] '>Our Customers</h1>
+        <div className='grid grid-cols-3 w-full h-[100%] gap-40 px-20'>
         {
           testdata.map((items)=>{
             return <Testimonials data={items}/>

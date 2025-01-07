@@ -61,3 +61,20 @@ exports.addToCart = async (req, res) => {
     }
   };
   
+  exports.deleteCartItem=async(req,res)=>{
+    const { email , id} =req.params;
+    console.log(id,"item id")
+    try{
+      const user =await User.findOne({email})
+      if(!user){
+        return res.status(404).json({error: "User not found"})
+      }
+      const delitemIndex=user.cart.findIndex((items)=>items.productId._id === id)
+      user.cart.splice(delitemIndex,1)
+      await user.save();
+      res.status(200).json({message:"Item deleted successfully"})
+    }catch (error) {
+      console.error("Error fetching cart:", error);
+      res.status(500).json({ error: "Server error" });
+    }
+  }

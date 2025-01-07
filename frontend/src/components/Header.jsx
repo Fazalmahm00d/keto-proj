@@ -8,19 +8,28 @@ import axios from "axios";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
+import { Toast } from "./Toast";
 
 function Header(props) {
     const dispatch=useDispatch();
     const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
     const cartItems=useSelector((state)=>state.dataReducer.cartItems)
+    const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
+
     const[length,setLength]=useState(0)
-    
+
+    const handleToast = (message, type) => {
+      setToast({ message, type, isVisible: true });
+      setTimeout(() => setToast({ ...toast, isVisible: false }), 30000); // Hide toast after 3 seconds
+    };
     async function LogOutHandler(){
       
       try {
         Cookies.remove("authToken"); // "Logged out successfully"
         // Redirect to login page or handle logout logic
+        handleToast("Logged Out", "alert-success");
+        setTimeout(() => setToast(false), 3000);
       } catch (error) {
         console.error("Logout failed", error);
       }
@@ -33,19 +42,15 @@ function Header(props) {
       data: cartData,
       isLoading: cartDataLoading,
       isError: cartDataError
-  } = useQuery({
+    } = useQuery({
       queryKey: ["get cart data", isEmail], // Add isEmail to dependency array
       queryFn: () => getCartItem(isEmail),
-      onSuccess: (data) => {
-          console.log("Cart data in header:", data);
-          // Since we know data is the cart array from our service
-          setLength(Array.isArray(data) ? data.length : 0);
-      },
+      enabled:isEmail !== undefined,
       onError: (error) => {
           console.error("Error fetching cart data:", error);
           setLength(0); // Reset length on error
       },
-      enabled: !!isEmail,
+      
       // Add some configuration for better UX
       staleTime: 30000, // Consider data fresh for 30 seconds
       cacheTime: 5 * 60 * 1000, // Keep data in cache for 5 minutes
@@ -53,12 +58,15 @@ function Header(props) {
   
   
   const showSessionExpiredPopup = () => {
-    console.log("session expired");
+    handleToast("Session expired.Please login again", "alert-success");
+
     // Redirect to login
     window.location.href = "/login";
   };
     useEffect(()=>{
-      setLength(cartData.length)
+      if(cartData){
+        setLength(cartData?.length)
+      }
     },[cartData])
     
     useEffect(()=>{
@@ -88,6 +96,13 @@ function Header(props) {
         
         <div className='flex bg-white justify-evenly items-center w-[100%] h-[100px]'>
           <Link to="/">
+          {toast.isVisible && (
+                  <Toast
+                    message={toast.message}
+                    type={toast.type}
+                    onClose={() => setToast({ ...toast, isVisible: false })}
+                  />
+                )}
           <div>
             <img 
               src="//www.ketodelia.ca/cdn/shop/files/Ketodelia_Logo_1b.png?v=1664321580" 

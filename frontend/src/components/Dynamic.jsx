@@ -6,7 +6,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { dataAction } from "../ReduxStore/dataCart";
 import { updateCart } from "../lib/cartapi";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductById } from "../lib/productapi";
 
 function Dynamic(){
@@ -14,15 +14,29 @@ function Dynamic(){
     const [filteredData, setFilteredData] = useState(null); // Add state for filtered data
     const dispatch = useDispatch();
     const isEmail = useSelector((state)=>state.authReducer.isEmail)
+    const queryClient = useQueryClient();
+    const [showToast, setShowToast] = useState(false);
+
     const cartMutate=useMutation({
         mutationFn:updateCart,
         onSuccess:(response)=>{
-            dispatch(dataAction.setCartArr(response.data.user.cart))
-        },
-        onError:(error)=>{
-            console.error("err:", error)
+            queryClient.invalidateQueries(["get cart data"]);
+            
+            // If you have the cart data in the response
+            if (response?.data?.user?.cart) {
+                dispatch(dataAction.setCartArr(response.data.user.cart));
+                console.log("calling on successs ")
+                // Optionally update the query data immediately
+                queryClient.setQueryData(["get cart data"], response.data.user.cart);
+                setShowToast(true);
 
-        }
+                // Hide the toast after 3 seconds
+                setTimeout(() => setShowToast(false), 3000);}
+                    },
+                    onError:(error)=>{
+                        console.error("err:", error)
+
+                    }
     })
     const {data:productData,isLoading:productDataLoading,isError:productDataError}=useQuery({
         queryKey:["get product data"],
@@ -70,6 +84,36 @@ function Dynamic(){
         <div>
             <Header/>
             <div className="px-20 py-10">
+            {showToast && (
+         <div className="fixed toast toast-top toast-end">
+         <div className="alert alert-success shadow-lg flex items-center gap-2">
+           {/* Success Icon */}
+           <svg
+             xmlns="http://www.w3.org/2000/svg"
+             className="h-6 w-6 text-white"
+             fill="none"
+             viewBox="0 0 24 24"
+             stroke="currentColor"
+           >
+             <path
+               strokeLinecap="round"
+               strokeLinejoin="round"
+               strokeWidth="2"
+               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+             />
+           </svg>
+           {/* Message */}
+           <span className="font-semibold text-white">Item added successfully!</span>
+           {/* Close Button */}
+           <button
+             className="btn btn-xs btn-circle btn-outline text-white hover:bg-green-100"
+             onClick={() => setShowToast(false)} // Replace with your close logic
+           >
+             ✕
+           </button>
+         </div>
+       </div>
+      )}
                 <div>
                     <Link to="/menu">
                         <button className="text-[#512b55] underline">Back to menu</button>

@@ -11,6 +11,7 @@ export async function getProductById(id) {
 
 
 export async function getAllProducts() {
+    console.log("get all products called")
     try{
         const response = await axios.get('http://localhost:8000/api/products');
         return response;

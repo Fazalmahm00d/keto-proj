@@ -1,7 +1,7 @@
 function Testimonials(props){
     return(
         
-            <div className="w-[25%] h-[400px] text-[rgba(61,8,27,0.75)] ">
+            <div className="h-[400px] text-[rgba(61,8,27,0.75)] ">
             <div className="relative flex justify-center h-[50%] w-[100%]  ">
             <img className='w-full'src={props.data.img} alt=""></img>
             <div className="border-2 w-[20%]  absolute bottom-[-30px] text-center rounded-full p-5 bg-gray-200 text-xl z-50">{props.data.avtext}</div>

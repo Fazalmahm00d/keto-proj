@@ -27,3 +27,15 @@ export async function getCartItem(isEmail){
         return null; // Handle error gracefully
       }
 }
+
+export async function deleteItem(obj) {
+          console.log("delete handler")
+          console.log(obj,"object in deletes")
+          const productIdString = obj.id.productId._id.toString();
+          console.log(productIdString,"id of product")
+      try{
+        await axios.delete(`http://localhost:8000/user/${obj.isEmail}/cart/${productIdString}`)
+      }catch(err){
+        console.log(err,"error")
+      }
+}

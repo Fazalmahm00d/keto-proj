@@ -7,7 +7,7 @@ require("dotenv").config();
 const app = express();
 const connectDB = require("./config/dbConfig");
 const { register, login, googlelogin } = require("./controller/authController");
-const { addToCart, getCart } = require("./controller/userController");
+const { addToCart, getCart, deleteCartItem } = require("./controller/userController");
 const { createProduct, getAllProducts, getProductById } = require("./controller/productController");
 
 app.use(
@@ -27,6 +27,8 @@ app.post("/api/users/google", googlelogin)
 
 app.post("/user/:email/cart",addToCart)
 app.get("/user/:email/cart",getCart)
+
+app.delete("/user/:email/cart/:id",deleteCartItem)
 
 app.post('/api/products', createProduct);
 
