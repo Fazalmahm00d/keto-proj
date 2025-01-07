@@ -6,7 +6,7 @@ require("dotenv").config();
 
 const app = express();
 const connectDB = require("./config/dbConfig");
-const { register, login } = require("./controller/authController");
+const { register, login, googlelogin } = require("./controller/authController");
 const { addToCart, getCart } = require("./controller/userController");
 const { createProduct, getAllProducts, getProductById } = require("./controller/productController");
 
@@ -23,6 +23,7 @@ connectDB(process.env.MONGO_URI);
 
 app.post("/api/register", register);
 app.post("/api/login", login);
+app.post("/api/users/google", googlelogin)
 
 app.post("/user/:email/cart",addToCart)
 app.get("/user/:email/cart",getCart)

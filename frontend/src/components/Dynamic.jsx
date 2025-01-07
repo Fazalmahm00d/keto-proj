@@ -5,45 +5,60 @@ import { CartContext } from "./contextAPI";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { dataAction } from "../ReduxStore/dataCart";
+import { updateCart } from "../lib/cartapi";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getProductById } from "../lib/productapi";
 
 function Dynamic(){
     const { id } = useParams(); // Destructure id directly
     const [filteredData, setFilteredData] = useState(null); // Add state for filtered data
     const dispatch = useDispatch();
     const isEmail = useSelector((state)=>state.authReducer.isEmail)
-    const isAuthenticate = useSelector((state)=>state.authReducer.isAuthenticate)
-    
-    const MyContext = useContext(CartContext);
+    const cartMutate=useMutation({
+        mutationFn:updateCart,
+        onSuccess:(response)=>{
+            dispatch(dataAction.setCartArr(response.data.user.cart))
+        },
+        onError:(error)=>{
+            console.error("err:", error)
+
+        }
+    })
+    const {data:productData,isLoading:productDataLoading,isError:productDataError}=useQuery({
+        queryKey:["get product data"],
+        queryFn:()=>getProductById(id),
+        onSuccess:(res)=>{
+            console.log(res,"response in product")
+        }
+    })
 
     // Fetch product data when component mounts
-    useEffect(() => {
-        const fetchProductData = async () => {
-            try {
-                const response = await axios.get(`http://localhost:8000/api/products/${id}`);
-                setFilteredData(response.data.product);
-            } catch (error) {
-                console.error("Error fetching product:", error);
-            }
-        };
+    // useEffect(() => {
+    //     const fetchProductData = async () => {
+    //         try {
+    //             const response = await axios.get(`http://localhost:8000/api/products/${id}`);
+    //             setFilteredData(response.data.product);
+    //         } catch (error) {
+    //             console.error("Error fetching product:", error);
+    //         }
+    //     };
 
-        fetchProductData();
-    }, [id]);
-    
+    //     fetchProductData();
+    // }, [id]);
+    useEffect(()=>{
+        setFilteredData(productData)
+    },[productData])
     
    
     async function sendToFb(id){
-        const newCartItem = {
-            productId: id,
-            quantity:1
+        const obj={
+            isEmail,
+            newCartItem:{
+                productId: id,
+                quantity:1
+            }
         }
-        console.log(newCartItem,"items before sending")
-        try {
-            const response = await axios.post(`http://localhost:8000/user/${isEmail}/cart`, newCartItem)
-            console.log(response)
-            dispatch(dataAction.setCartArr(response.data.user.cart))
-        } catch(error) {
-            console.error("err:", error)
-        }
+        cartMutate.mutate(obj)
     }   
         
     // Show loading state while data is being fetched

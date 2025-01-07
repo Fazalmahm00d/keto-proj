@@ -6,6 +6,8 @@ import { authAction } from "../ReduxStore/Authenticate";
 import { dataAction } from "../ReduxStore/dataCart";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { useQuery } from "@tanstack/react-query";
+import { getCartItem } from "../lib/cartapi";
 
 function Header(props) {
     const dispatch=useDispatch();
@@ -13,9 +15,7 @@ function Header(props) {
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
     const cartItems=useSelector((state)=>state.dataReducer.cartItems)
     const[length,setLength]=useState(0)
-    // const MyContext=useContext(CartContext)
-    // const arr=MyContext.cartitems;
-    // let length=cartItems.length;
+    
     async function LogOutHandler(){
       
       try {
@@ -29,34 +29,37 @@ function Header(props) {
       dispatch(authAction.changeTokenValue(false));
       dispatch(authAction.changeEmailValue(undefined))
     }
-    
+    const {
+      data: cartData,
+      isLoading: cartDataLoading,
+      isError: cartDataError
+  } = useQuery({
+      queryKey: ["get cart data", isEmail], // Add isEmail to dependency array
+      queryFn: () => getCartItem(isEmail),
+      onSuccess: (data) => {
+          console.log("Cart data in header:", data);
+          // Since we know data is the cart array from our service
+          setLength(Array.isArray(data) ? data.length : 0);
+      },
+      onError: (error) => {
+          console.error("Error fetching cart data:", error);
+          setLength(0); // Reset length on error
+      },
+      enabled: !!isEmail,
+      // Add some configuration for better UX
+      staleTime: 30000, // Consider data fresh for 30 seconds
+      cacheTime: 5 * 60 * 1000, // Keep data in cache for 5 minutes
+  });
   
-    async function getCartItem(){
-      try {
-          const response = await axios.get(`http://localhost:8000/user/${isEmail}/cart`, {
-            withCredentials: true, // If your API uses cookies for authentication
-          });
-      
-          // The populated cart data
-          const cart = response.data.cart;
-          console.log("Cart fetched successfully:", cart);
-          setLength(cart.length)
-          dispatch(dataAction.setCartArr(cart))
-        
-          return cart; // Return the cart for further use
-        } catch (error) {
-          console.error("Error fetching cart:", error.response?.data || error.message);
-          return null; // Handle error gracefully
-        }
-  }
+  
   const showSessionExpiredPopup = () => {
     console.log("session expired");
     // Redirect to login
     window.location.href = "/login";
   };
     useEffect(()=>{
-      getCartItem();
-    },[isEmail,cartItems.length])
+      setLength(cartData.length)
+    },[cartData])
     
     useEffect(()=>{
       console.log(isEmail,"email value")

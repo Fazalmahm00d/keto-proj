@@ -155,6 +155,45 @@ exports.login = async (req, res) => {
   }
 };
 
+exports.googlelogin= async(req,res)=>{
+  try{
+    const { email , username} =req.body;
+  const existingUser = await User.findOne({ email });
+
+  if(existingUser){
+    res.status(200).json({ message: "Login successful",user: {
+      id: existingUser._id,
+      email: existingUser.email,
+      username: existingUser.username,
+    }
+    })
+  }
+  else{
+    const newUser = new User({
+      email,
+      username,
+      cart: [],
+      wishlist: []
+    });
+    const savedUser = await newUser.save();
+    console.log("Saved User:", savedUser);
+    res.status(201).json({
+      message: "User registered successfully",
+      user: {
+        id: savedUser._id,
+        email: savedUser.email,
+        username: savedUser.username,
+        idToken:token
+      },
+    });
+  }
+  }catch(error){
+    res.status(500).json({ message: "Server error", error });
+
+  }
+
+
+}
 // // Logout Controlle
 // // Example Protected Route
 // exports.getProfile = [authenticateUser, async (req, res) => {

@@ -3,6 +3,8 @@ import Footer from "./Footer";
 import MenuItems from "./MenuItems";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { getAllProducts } from "../lib/productapi";
+import { useQuery } from "@tanstack/react-query";
 
 function Menu(props){
   const [menuItems, setMenuItems] = useState({
@@ -11,32 +13,51 @@ function Menu(props){
     salads: [],
     mainDishes: []
 });
-const [loading, setLoading] = useState(true);
-const [error, setError] = useState(null);
-  useEffect(() => {
-    const fetchItems = async () => {
-        try {
-            setLoading(true);
-            const response = await axios.get('http://localhost:8000/api/products');
-            const products = response.data.products;
+// const [loading, setLoading] = useState(true);
+// const [error, setError] = useState(null);
 
+const {data:productData,isLoading:productDataLoading,isError:productDataError}=useQuery({
+  queryKey:["get all products data"],
+  queryFn:()=>getAllProducts(),
+  onSuccess:(res)=>{
+      console.log(res,"response in product")
+  }
+})
+
+useEffect(()=>{
+  if(productData){
+    const products = productData.data.products;
             setMenuItems({
                 appetizers: products.filter(item => item.category === 'appetizer'),
                 breakfastItems: products.filter(item => item.category === 'breakfast'),
                 salads: products.filter(item => item.category === 'salad'),
                 mainDishes: products.filter(item => item.category === 'main')
-            });
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
-    };
+  })}
+},[productData])
+//   useEffect(() => {
+//     const fetchItems = async () => {
+//         try {
+//             setLoading(true);
+//             const response = await axios.get('http://localhost:8000/api/products');
+//             const products = response.data.products;
 
-    fetchItems();
-}, []);
-if (loading) return <div>Loading...</div>;
-if (error) return <div>Error: {error}</div>;
+//             setMenuItems({
+//                 appetizers: products.filter(item => item.category === 'appetizer'),
+//                 breakfastItems: products.filter(item => item.category === 'breakfast'),
+//                 salads: products.filter(item => item.category === 'salad'),
+//                 mainDishes: products.filter(item => item.category === 'main')
+//             });
+//         } catch (err) {
+//             setError(err.message);
+//         } finally {
+//             setLoading(false);
+//         }
+//     };
+
+//     fetchItems();
+// }, []);
+if (productDataLoading) return <div>Loading...</div>;
+if (productDataError) return <div>Error: {error}</div>;
   
     return(
     <div>
