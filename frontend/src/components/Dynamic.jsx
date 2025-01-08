@@ -119,10 +119,10 @@ function Dynamic(){
                         <button className="text-[#512b55] underline">Back to menu</button>
                     </Link>
                 </div>
-                <div className="flex gap-16 mt-10">
+                <div className="flex gap-16 mt-10 px-40">
                     <div className="w-[50%] px-16 ">
                         <img 
-                            className="w-full h-[25rem] rounded-xl border-gray-300 border-4 overflow-hidden" 
+                            className="w-full h-[30rem] object-cover rounded-xl border-gray-300 border-4 overflow-hidden" 
                             src={filteredData.img} 
                             alt={filteredData.name} 
                         />
@@ -132,7 +132,7 @@ function Dynamic(){
                         <h1 className="text-3xl mt-2">{filteredData.name}</h1>
                         <div className="font-bold text-xl mt-6">${filteredData.price}</div>
                         <button 
-                            className="w-full rounded-full text-l text-white p-2 bg-[#94619a] mt-8"
+                            className="w-96 rounded-full text-l text-white p-2 bg-[#94619a] mt-8"
                             onClick={() => sendToFb(filteredData._id,filteredData.name, filteredData.price)}
                         >
                             Add to Order
