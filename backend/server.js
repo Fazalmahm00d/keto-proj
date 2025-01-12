@@ -12,7 +12,7 @@ const { createProduct, getAllProducts, getProductById } = require("./controller/
 
 app.use(
     cors({
-      origin: "http://ketodalia.vercel.app", // Replace with the frontend's URL
+      origin: "https://ketodalia.vercel.app", // Replace with the frontend's URL
       credentials: true, // Allow cookies and other credentials
     })
   );
