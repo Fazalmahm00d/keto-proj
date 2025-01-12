@@ -23,8 +23,8 @@ function Login(props) {
   const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
 
   // Backend endpoints for login and signup
-  const signUpURL = "http://localhost:8000/api/register"; // Replace with your backend's signup endpoint
-  const logInURL = "http://localhost:8000/api/login"; // Replace with your backend's login endpoint
+  const signUpURL = "https://ketodalia.onrender.com/api/register"; // Replace with your backend's signup endpoint
+  const logInURL = "https://ketodalia.onrender.com/api/login"; // Replace with your backend's login endpoint
 
 
   const handleToast = (message, type) => {

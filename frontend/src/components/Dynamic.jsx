@@ -50,7 +50,7 @@ function Dynamic(){
     // useEffect(() => {
     //     const fetchProductData = async () => {
     //         try {
-    //             const response = await axios.get(`http://localhost:8000/api/products/${id}`);
+    //             const response = await axios.get(`https://ketodalia.onrender.com/api/products/${id}`);
     //             setFilteredData(response.data.product);
     //         } catch (error) {
     //             console.error("Error fetching product:", error);

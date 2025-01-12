@@ -16,7 +16,7 @@ export async function sendToBackend(obj) {
   
 export async function loginGoogle(obj) {
   try{
-    const userResponse = await axios.post("http://localhost:8000/api/users/google", {
+    const userResponse = await axios.post("https://ketodalia.onrender.com/api/users/google", {
       email: obj.email,
       username: obj.displayName,
   });
