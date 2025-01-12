@@ -55,7 +55,7 @@ function Login(props) {
         });
       const email=Cookies.set("email",user.email,{
         secure:true,
-        expires:1/24,
+        // expires:1/24,
         path:'/'
       }
 

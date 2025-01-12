@@ -6,7 +6,7 @@ import AboutUs from './components/AboutUs'
 import Contact from './components/Contact';
 import Login from './components/Login'
 import Cart from './components/Cart';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Dynamic from './components/Dynamic';
 import Cookies from "js-cookie";
 import { authAction } from './ReduxStore/Authenticate';
@@ -15,13 +15,18 @@ function App(){
   const dispatch=useDispatch();
   const [isAuthenticate,setIsAuthenticate]=useState(Cookies?.get("authToken"))
   const email=Cookies?.get("email")
-  dispatch(authAction.changeEmailValue(email))
+
+  useEffect(()=>{
+    if(email){
+    dispatch(authAction.changeEmailValue(email))
+    }
+  },[email])
   return(
       <div>
         
           <Routes>
             <Route path="/" element={<Main isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
-            <Route path="/menu" element={isAuthenticate ? <Menu isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>:<Login setIsAuthenticate={setIsAuthenticate}/>}/>
+            <Route path="/menu" element={<Menu isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
             <Route path="/aboutus" element={isAuthenticate ? <AboutUs isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>:<Login setIsAuthenticate={setIsAuthenticate}/>}/>
             <Route path="/contact" element={isAuthenticate ? <Contact isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>:<Login setIsAuthenticate={setIsAuthenticate}/>}/>
             <Route path="/login" element={<Login />}/>
