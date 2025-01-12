@@ -82,68 +82,66 @@ function Dynamic(){
     
     return(
         <div>
-            <Header/>
-            <div className="px-20 py-10">
-            {showToast && (
-         <div className="fixed toast toast-top toast-end">
-         <div className="alert alert-success shadow-lg flex items-center gap-2">
-           {/* Success Icon */}
-           <svg
-             xmlns="http://www.w3.org/2000/svg"
-             className="h-6 w-6 text-white"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke="currentColor"
-           >
-             <path
-               strokeLinecap="round"
-               strokeLinejoin="round"
-               strokeWidth="2"
-               d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-             />
-           </svg>
-           {/* Message */}
-           <span className="font-semibold text-white">Item added successfully!</span>
-           {/* Close Button */}
-           <button
-             className="btn btn-xs btn-circle btn-outline text-white hover:bg-green-100"
-             onClick={() => setShowToast(false)} // Replace with your close logic
-           >
-             ✕
-           </button>
-         </div>
-       </div>
-      )}
-                <div>
-                    <Link to="/menu">
-                        <button className="text-[#512b55] underline">Back to menu</button>
-                    </Link>
-                </div>
-                <div className="flex gap-16 mt-10 px-40">
-                    <div className="w-[50%] px-16 ">
-                        <img 
-                            className="w-full h-[30rem] object-cover rounded-xl border-gray-300 border-4 overflow-hidden" 
-                            src={filteredData.img} 
-                            alt={filteredData.name} 
-                        />
-                    </div>
-                    <div className="text-[#3d081b] w-[50%]">
-                        <h3 className="uppercase text-base">Ketodalia Restaurant</h3>
-                        <h1 className="text-3xl mt-2">{filteredData.name}</h1>
-                        <div className="font-bold text-xl mt-6">${filteredData.price}</div>
-                        <button 
-                            className="w-96 rounded-full text-l text-white p-2 bg-[#94619a] mt-8"
-                            onClick={() => sendToFb(filteredData._id,filteredData.name, filteredData.price)}
-                        >
-                            Add to Order
-                        </button>
-                        <div className="text-l mt-6">
-                            {filteredData.description}
-                        </div>
-                    </div>
-                </div>
+        <Header />
+        <div className="px-4 py-6 sm:px-6 md:px-10 lg:px-20 xl:px-32">
+          {showToast && (
+            <div className="fixed toast toast-top toast-end">
+              <div className="alert alert-success shadow-lg flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+                <span className="font-semibold text-white">Item added successfully!</span>
+                <button
+                  className="btn btn-xs btn-circle btn-outline text-white hover:bg-green-100"
+                  onClick={() => setShowToast(false)} // Replace with your close logic
+                >
+                  ✕
+                </button>
+              </div>
             </div>
+          )}
+          <div>
+            <Link to="/menu">
+              <button className="text-[#512b55] underline">Back to menu</button>
+            </Link>
+          </div>
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 mt-10 lg:px-20">
+            <div className="w-full lg:w-1/2 px-4 lg:px-8">
+              <img
+                className="w-full h-64 sm:h-80 md:h-96 lg:h-[30rem] object-cover rounded-xl border-gray-300 border-4 overflow-hidden"
+                src={filteredData.img}
+                alt={filteredData.name}
+              />
+            </div>
+            <div className="text-[#3d081b] w-full lg:w-1/2">
+              <h3 className="uppercase text-sm sm:text-base">Ketodalia Restaurant</h3>
+              <h1 className="text-xl sm:text-2xl md:text-3xl mt-2">{filteredData.name}</h1>
+              <div className="font-bold text-lg sm:text-xl mt-4 sm:mt-6">${filteredData.price}</div>
+              <button
+                className="w-full sm:w-64 lg:w-96 rounded-full text-sm md:text-base text-white py-2 bg-[#94619a] mt-6 sm:mt-8"
+                onClick={() => sendToFb(filteredData._id, filteredData.name, filteredData.price)}
+              >
+                Add to Order
+              </button>
+              <div className="text-sm sm:text-base mt-4 sm:mt-6">
+                {filteredData.description}
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      
     )
 }
 

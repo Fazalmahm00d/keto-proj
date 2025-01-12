@@ -14,6 +14,10 @@ import Footer from './Footer';
 import { useQuery } from '@tanstack/react-query';
 import { getAllProducts } from '../lib/productapi';
 import { useEffect, useState } from 'react';
+import { Carousel } from 'antd';
+import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+
+
 
 
 function Main(props) {
@@ -33,6 +37,59 @@ function Main(props) {
       return selected;
     }
   });
+  const contentStyle = {
+    height: '160px',
+    color: '#fff',
+    lineHeight: '160px',
+    textAlign: 'center',
+    background: '#364d79',
+  };
+  const CustomPrevArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: 'absolute',
+          zIndex: 1,
+          color: '#3d081b',  // Custom arrow color
+          fontSize: '30px',   // Big arrow size
+          backdropFilter: 'blur(10px)', // Backdrop filter effect (adjust blur)
+          WebkitBackdropFilter: 'blur(10px)', // For Safari support
+          padding:'1px 1px -10px -20px',
+          border:'' // Adjust padding to make arrows easier to click
+        }}
+        onClick={onClick}
+      >
+        <LeftOutlined />
+      </div>
+    );
+  };
+  
+  const CustomNextArrow = (props) => {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          display: 'relative',
+          zIndex: 1,
+          color: '#3d081b',  // Custom arrow color
+          fontSize: '30px',   // Big arrow size
+          backdropFilter: 'blur(10px)', // Backdrop filter effect (adjust blur)
+          WebkitBackdropFilter: 'blur(10px)', // For Safari support
+           padding:'1px 1px 10px 10px'// Adjust padding to make arrows easier to click
+        }}
+        onClick={onClick}
+      >
+        <RightOutlined />
+      </div>
+    );
+  };
+  
+  
   const data1=[
       {
       img:'https://www.ketodelia.ca/cdn/shop/products/cauliflowerbites.jpg?v=1673029354&width=360',
@@ -76,50 +133,77 @@ function Main(props) {
   },[])
   return (
     <div className='relative'>
-      <Header className='sticky' Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
-      <MainSection></MainSection>
-      <div className='flex w-full justify-center h-[200px]  items-center px-[50px]'>
-      <Cards data="Order Now, Enjoy Keto Tonight!"/>
-      <Cards data="Transparency You Can Trust: Every Ingredient Listed"/>
-      <Cards data="Safe for Diabetes, Celiac, and Keto-Lovers Alike!"/>
-      </div>
-      <div className='flex flex-col w-full justify-center h-[680px] px-[50px] items-center'>
-        <div className='text-4xl m-10 font-bold text-[rgba(61,8,27,0.75)] '>Most Loved</div>
-        <div className='grid grid-cols-4 w-full h-[100%] gap-20 px-20'>
-         {
-          productData?.map((items)=>{
-            return <Categories data={items}/>
-          })
-         }
-        </div>
-      </div>
-      <div className='w-full justify-center h-[600px] p-[50px] items-center'>
-        <h1 className='text-4xl text-center m-10 font-bold text-[rgba(61,8,27,0.75)] '>Our Customers</h1>
-        <div className='grid grid-cols-3 w-full h-[100%] gap-40 px-20'>
-        {
-          testdata.map((items)=>{
-            return <Testimonials data={items}/>
-          })
-         }
-        </div>
-      </div>
-        <div className='flex flex-col w-full justify-center h-[600px] items-center bg-[#f5eff5]'>
-          <div className='text-4xl font-bold text-[rgba(61,8,27,0.75)] '>Browse By Category</div>
-          <div className='flex w-100 justify-center items-center gap-[20px]'>
-          <Category img="https://www.ketodelia.ca/cdn/shop/products/AlmondFlourWaffles.jpg?v=1673029390&width=535" data="All Day Keto Breakfast"></Category>
-          <Category img="https://www.ketodelia.ca/cdn/shop/products/CreamyMushroomFettuccineAlfredo.jpg?v=1673029366&width=535" data="Keto Pastas"></Category>
-          <Category img="https://www.ketodelia.ca/cdn/shop/products/ketogardenveggiepizza.jpg?v=1673293248&width=535" data="Keto Pizzas"></Category>
-          <Category img="https://www.ketodelia.ca/cdn/shop/products/KetoChickenTenders.jpg?v=1673029425&width=535" data="Keto Mains"></Category>
-          </div>
+ <Header className='sticky' Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate} />
+ <MainSection />
+ 
+ <div className='flex flex-col md:flex-row w-full justify-center min-h-[200px] items-center px-4 md:px-[50px] py-8 gap-4'>
+   <Cards data="Order Now, Enjoy Keto Tonight!"/>
+   <Cards data="Transparency You Can Trust: Every Ingredient Listed"/>
+   <Cards data="Safe for Diabetes, Celiac, and Keto-Lovers Alike!"/>
+ </div>
 
-      </div>
-      <Banner></Banner>
-      <Description></Description>
-      <LocBanner></LocBanner>
-      <Mail></Mail>
-      <Footer></Footer>
-    </div>
-    
+ <div className='flex flex-col w-full justify-center min-h-[680px] px-4 md:px-[50px] items-center'>
+   <div className='text-2xl md:text-4xl m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
+     Most Loved
+   </div>
+   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full h-full gap-6 md:gap-20 px-4 md:px-20'>
+     {productData?.map((items) => (
+       <Categories key={items.id} data={items}/>
+     ))}
+   </div>
+ </div>
+
+ <div className='w-full justify-center min-h-[600px] p-10 md:p-[50px] items-center'>
+   <h1 className='text-2xl md:text-4xl text-center m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
+     Our Customers
+   </h1>
+  <div className='hidden md:grid md:grid-cols-2 lg:grid-cols-3 w-full h-[40rem] md:gap-40 px-4 md:px-20'>
+  {testdata.map((items) => (
+        <Testimonials key={items.id} data={items} />
+      ))}
+
+  </div>
+  <div className='block sm:block md:hidden bg-blue-300 relative'>
+    <Carousel arrows  autoplay  prevArrow={<CustomPrevArrow />}
+  nextArrow={<CustomNextArrow />} >
+      {testdata.map((items) => (
+        <Testimonials key={items.id} data={items} />
+      ))}
+    </Carousel>
+  </div>
+
+ </div>
+
+ <div className='flex flex-col w-full justify-center min-h-[600px] items-center bg-[#f5eff5] py-8'>
+   <div className='text-2xl md:text-4xl font-bold text-[rgba(61,8,27,0.75)] mb-8 text-center px-4'>
+     Browse By Category
+   </div>
+   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full justify-items-center gap-6 md:gap-[20px] px-4 md:px-[50px]'>
+     <Category 
+       img="https://www.ketodelia.ca/cdn/shop/products/AlmondFlourWaffles.jpg?v=1673029390&width=535" 
+       data="All Day Keto Breakfast"
+     />
+     <Category 
+       img="https://www.ketodelia.ca/cdn/shop/products/CreamyMushroomFettuccineAlfredo.jpg?v=1673029366&width=535" 
+       data="Keto Pastas"
+     />
+     <Category 
+       img="https://www.ketodelia.ca/cdn/shop/products/ketogardenveggiepizza.jpg?v=1673293248&width=535" 
+       data="Keto Pizzas"
+     />
+     <Category 
+       img="https://www.ketodelia.ca/cdn/shop/products/KetoChickenTenders.jpg?v=1673029425&width=535" 
+       data="Keto Mains"
+     />
+   </div>
+ </div>
+
+ <Banner />
+ <Description />
+ <LocBanner />
+ <Mail />
+ <Footer />
+</div>
   );
 }
 

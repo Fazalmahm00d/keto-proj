@@ -53,3 +53,26 @@ html, body {
   --color-base-background-1: #f9f9f9; /* Change to your base background color */
   --gradient-base-background-1: linear-gradient(to left, rgb(64, 3, 100),rgba(100,13,152,1)); /* Change to your gradient */
 }
+
+/* Customizing the color of the left and right arrows */
+.slick-prev, .slick-next {
+  color: #3d081b
+   /* Change to your desired color */
+}
+
+
+
+/* Optional: Customize the hover state of the arrows */
+.slick-prev:hover, .slick-next:hover {
+  color: #00ff00; /* Hover color */
+}
+
+/* Customizing the color of the dots */
+.slick-dots li button:before {
+  color: #ff0000; /* Inactive dot color */
+}
+
+/* Customizing the color of the active dot */
+.slick-dots li.slick-active button:before {
+  color: #00ff00; /* Active dot color */
+}
