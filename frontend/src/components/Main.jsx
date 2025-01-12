@@ -15,7 +15,6 @@ import { useQuery } from '@tanstack/react-query';
 import { getAllProducts } from '../lib/productapi';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 
 
 
@@ -37,13 +36,7 @@ function Main(props) {
       return selected;
     }
   });
-  const contentStyle = {
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-  };
+  
   const CustomPrevArrow = (props) => {
     const { className, style, onClick } = props;
     return (
@@ -51,18 +44,16 @@ function Main(props) {
         className={className}
         style={{
           ...style,
-          display: 'absolute',
           zIndex: 1,
           color: '#3d081b',  // Custom arrow color
           fontSize: '30px',   // Big arrow size
-          backdropFilter: 'blur(10px)', // Backdrop filter effect (adjust blur)
-          WebkitBackdropFilter: 'blur(10px)', // For Safari support
-          padding:'1px 1px -10px -20px',
-          border:'' // Adjust padding to make arrows easier to click
+          padding:'2px 4px',
+          margin:"10px",
+           // Adjust padding to make arrows easier to click
         }}
         onClick={onClick}
       >
-        <LeftOutlined />
+      
       </div>
     );
   };
@@ -78,13 +69,12 @@ function Main(props) {
           zIndex: 1,
           color: '#3d081b',  // Custom arrow color
           fontSize: '30px',   // Big arrow size
-          backdropFilter: 'blur(10px)', // Backdrop filter effect (adjust blur)
-          WebkitBackdropFilter: 'blur(10px)', // For Safari support
-           padding:'1px 1px 10px 10px'// Adjust padding to make arrows easier to click
+           padding:'2px 4px',
+          margin:"10px",
         }}
         onClick={onClick}
       >
-        <RightOutlined />
+        
       </div>
     );
   };
@@ -146,18 +136,18 @@ function Main(props) {
    <div className='text-2xl md:text-4xl m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
      Most Loved
    </div>
-   <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full h-full gap-6 md:gap-20 px-4 md:px-20'>
+   <div className='grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-4 w-full h-full gap-6 md:gap-20 px-4 md:px-20'>
      {productData?.map((items) => (
        <Categories key={items.id} data={items}/>
      ))}
    </div>
  </div>
 
- <div className='w-full justify-center min-h-[600px] p-10 md:p-[50px] items-center'>
+ <div className='w-full justify-center md:min-h-screen p-10 md:p-[50px] items-center py-20'>
    <h1 className='text-2xl md:text-4xl text-center m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
      Our Customers
    </h1>
-  <div className='hidden md:grid md:grid-cols-2 lg:grid-cols-3 w-full h-[40rem] md:gap-40 px-4 md:px-20'>
+  <div className='hidden md:grid md:grid-cols-3 lg:grid-cols-3 w-full items-center justify-center md:gap-10  lg:gap-40 px-4 md:px-10'>
   {testdata.map((items) => (
         <Testimonials key={items.id} data={items} />
       ))}

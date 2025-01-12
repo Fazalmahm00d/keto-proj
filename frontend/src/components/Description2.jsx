@@ -1,6 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 function Description2() {
+    const navigate=useNavigate()
+    const handleClick=()=>{
+        navigate('/menu')
+    }
     return (
-        <div className="flex flex-col items-center justify-center m-5 sm:m-10 lg:m-20 w-full max-w-3xl text-center font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
+        <div className="flex flex-col items-center justify-center m-5 p-10 sm:m-10 lg:m-20 w-full md:max-w-6xl text-center font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
             <p className="mt-6 tracking-wide">
                 At Ketodelia, we're passionate about providing <span className="font-medium">delicious, keto-friendly</span> meals that are not only good for you, but also taste amazing. Our restaurant, based in Toronto, offers <span className="font-medium">100% gluten-free</span>, low-carb cuisine that is carefully crafted using only the highest quality ingredients.
             </p>
@@ -17,7 +23,7 @@ function Description2() {
                 We're proud to offer <span className="font-medium">pickup and same-day or next-day delivery</span> in Toronto and nearby cities, making it easy for you to enjoy our delicious keto-friendly meals whenever and wherever you choose. Visit us today and discover the taste of healthy eating at its finest!
             </p>
             <div className="mt-6">
-                <button className="bg-[#94619a] text-white px-6 py-3 uppercase font-medium text-sm sm:text-base rounded-full border-[#3d081b] border-0.5 shadow-[black_3px_6px_3px_0px]">
+                <button onClick={handleClick} className="bg-[#94619a] text-white px-6 py-3 uppercase font-medium text-sm sm:text-base rounded-full border-[#3d081b] border-0.5 shadow-[black_3px_6px_3px_0px]">
                     Explore Our Menu
                 </button>
             </div>

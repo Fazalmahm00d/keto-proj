@@ -26,7 +26,7 @@ function Footer() {
                 <li>Keto Blog</li>
               </ul>
             </div>
-            <div className="w-full sm:w-[40%] md:w-[25%] lg:w-[20%]">
+            <div className="hidden w-full md:block md:w-[25%] lg:w-[20%]">
               <h2 className="font-bold text-xl">Information</h2>
               <ul className="mt-5 space-y-2">
                 <li>What Our Guests Are Saying</li>

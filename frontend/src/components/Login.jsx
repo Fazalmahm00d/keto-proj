@@ -165,7 +165,7 @@ function Login(props) {
   };
 
   return (
-    <div className="min-h-screen bg-[url('./src/assets/bg2.png')] bg-cover flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 px-4">
+    <div className="min-h-screen bg-[url('./src/assets/bg2.png')] bg-center flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 px-4">
   {toast.isVisible && (
     <Toast
       message={toast.message}
