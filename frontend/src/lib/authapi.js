@@ -1,10 +1,11 @@
-import axios from "axios";
+
+import api from "./api";
 
 export async function sendToBackend(obj) {
     console.log(obj.data,"data in func")
     try {
     
-      const res=await axios.post(obj.URL,obj.data);
+      const res=await api.post(obj.URL,obj.data);
       return res
       // Update global state with user information
        // Navigate to the home page
@@ -16,7 +17,7 @@ export async function sendToBackend(obj) {
   
 export async function loginGoogle(obj) {
   try{
-    const userResponse = await axios.post("https://ketodalia.onrender.com/api/users/google", {
+    const userResponse = await api.post("https://ketodalia.onrender.com/api/users/google", {
       email: obj.email,
       username: obj.displayName,
   });

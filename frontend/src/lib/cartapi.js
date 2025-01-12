@@ -1,8 +1,9 @@
 import axios from "axios"
+import api from "./api"
 
 export async function updateCart(obj) {
     try {
-        const response = await axios.post(`https://ketodalia.onrender.com/user/${obj.isEmail}/cart`, obj.newCartItem)
+        const response = await api.post(`https://ketodalia.onrender.com/user/${obj.isEmail}/cart`, obj.newCartItem)
         console.log(response,"response from update cart")
         return response
         // dispatch(dataAction.setCartArr(response.data.user.cart))
@@ -13,7 +14,7 @@ export async function updateCart(obj) {
 
 export async function getCartItem(isEmail){
     try {
-        const response = await axios.get(`https://ketodalia.onrender.com/user/${isEmail}/cart`, {
+        const response = await api.get(`https://ketodalia.onrender.com/user/${isEmail}/cart`, {
           withCredentials: true, // If your API uses cookies for authentication
         });
         console.log("response in cart api")
@@ -34,7 +35,7 @@ export async function deleteItem(obj) {
           const productIdString = obj.id.productId._id.toString();
           console.log(productIdString,"id of product")
       try{
-        await axios.delete(`https://ketodalia.onrender.com/user/${obj.isEmail}/cart/${productIdString}`)
+        await api.delete(`https://ketodalia.onrender.com/user/${obj.isEmail}/cart/${productIdString}`)
       }catch(err){
         console.log(err,"error")
       }

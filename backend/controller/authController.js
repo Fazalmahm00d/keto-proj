@@ -6,6 +6,7 @@ const express = require("express");
 const User = require("../models/usermodel");
 const Authenticate = require("../models/authmodel");
 
+
 const app = express();
 app.use(cookieParser());
 
@@ -86,6 +87,12 @@ exports.register = async (req, res) => {
       // Generate a token
       const token = await generateToken();
       console.log("token" ,token)
+      res.cookie("authToken", token, {
+        httpOnly: true,
+        secure: true, // Use true if your backend is on HTTPS
+        sameSite: "none", // Required for cross-origin
+        maxAge: TOKEN_EXPIRATION_TIME, // Cookie expiration time
+      });
       // res.cookie("authToken", token, {
       //   // httpOnly: true,
       //   secure: true,
@@ -119,7 +126,12 @@ exports.login = async (req, res) => {
   try {
 
     const { email, password } = req.body;
-    
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: true, // Use true if your backend is on HTTPS
+      sameSite: "none", // Required for cross-origin
+      maxAge: TOKEN_EXPIRATION_TIME, // Cookie expiration time
+    });
     // Check if user exists
     const auth = await Authenticate.findOne({ email });
     console.log(auth,"user found")
@@ -140,7 +152,7 @@ exports.login = async (req, res) => {
     const token =await generateToken();
     console.log("token genrated ",token)
   
-
+    
     // Send response
     res.status(200).json({ message: "Login successful",user: {
       id: user._id,
@@ -161,6 +173,13 @@ exports.googlelogin= async(req,res)=>{
   const existingUser = await User.findOne({ email });
 
   if(existingUser){
+    const token = generateToken();
+      res.cookie("authToken", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        maxAge: TOKEN_EXPIRATION_TIME,
+      });
     res.status(200).json({ message: "Login successful",user: {
       id: existingUser._id,
       email: existingUser.email,
@@ -176,6 +195,13 @@ exports.googlelogin= async(req,res)=>{
       wishlist: []
     });
     const savedUser = await newUser.save();
+    const token = generateToken();
+    res.cookie("authToken", token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: TOKEN_EXPIRATION_TIME,
+    });
     console.log("Saved User:", savedUser);
     res.status(201).json({
       message: "User registered successfully",
