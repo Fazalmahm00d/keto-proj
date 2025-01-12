@@ -11,7 +11,10 @@ const { addToCart, getCart, deleteCartItem } = require("./controller/userControl
 const { createProduct, getAllProducts, getProductById } = require("./controller/productController");
 
 app.use(
-    cors()
+    cors({
+      origin: "http://ketodalia.vercel.app", // Replace with the frontend's URL
+      credentials: true, // Allow cookies and other credentials
+    })
   );
 app.use(express.json());
 
