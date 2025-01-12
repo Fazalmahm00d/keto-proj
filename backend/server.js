@@ -11,10 +11,7 @@ const { addToCart, getCart, deleteCartItem } = require("./controller/userControl
 const { createProduct, getAllProducts, getProductById } = require("./controller/productController");
 
 app.use(
-    cors({
-      origin: "http://localhost:5173", // Replace with the frontend's URL
-      credentials: true, // Allow cookies and other credentials
-    })
+    cors()
   );
 app.use(express.json());
 
