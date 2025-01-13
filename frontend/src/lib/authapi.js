@@ -1,5 +1,7 @@
 
 import api from "./api";
+import Cookies from "js-cookie";
+
 
 export async function sendToBackend(obj) {
     console.log(obj.data,"data in func")
