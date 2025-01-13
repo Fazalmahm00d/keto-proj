@@ -8,13 +8,13 @@ import Testimonials from './Testimonials';
 import Banner from './Banner';
 import Description from './Description';
 import LocBanner from './LocBanner';
-import MenuItems from './MenuItems';
 import Mail from './Mail';
 import Footer from './Footer';
 import { useQuery } from '@tanstack/react-query';
 import { getAllProducts } from '../lib/productapi';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
+import TestimonialsGrid from './Testimonials';
 
 
 
@@ -37,75 +37,9 @@ function Main(props) {
     }
   });
   
-  const CustomPrevArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          zIndex: 1,
-          color: '#3d081b',  // Custom arrow color
-          fontSize: '30px',   // Big arrow size
-          padding:'2px 4px',
-          margin:"10px",
-           // Adjust padding to make arrows easier to click
-        }}
-        onClick={onClick}
-      >
-      
-      </div>
-    );
-  };
+
   
-  const CustomNextArrow = (props) => {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          display: 'relative',
-          zIndex: 1,
-          color: '#3d081b',  // Custom arrow color
-          fontSize: '30px',   // Big arrow size
-           padding:'2px 4px',
-          margin:"10px",
-        }}
-        onClick={onClick}
-      >
-        
-      </div>
-    );
-  };
-  
-  
-  const data1=[
-      {
-      img:'https://www.ketodelia.ca/cdn/shop/products/cauliflowerbites.jpg?v=1673029354&width=360',
-      head:"Air Fried Keto Buffalo Cauliflower Bites", 
-      descr:"Lightly battered organic cauliflower tossed in homemade buffalo sauce with your choice of homemade keto dressing. Air Fried.",
-      price:"$13.95"
-      },
-      { img:"https://www.ketodelia.ca/cdn/shop/products/ketochickensoup.jpg?v=1673029356&width=360" ,
-          head:"Keto Chicken Soup" ,
-          descr:"Our Keto Chicken Soup is made with homemade organic farmers chicken and cauliflower rice. Not only is it ultra-comforting and delicious, but it's low carb and full of beneficial nutrients. Great for the whole family!",
-           price:"$12.95"
-      },
-      {
-          img:"https://www.ketodelia.ca/cdn/shop/products/NoSugarCheesecake.jpg?v=1673029341&width=360",
-           head:"Keto Cheesecake" ,
-           descr:"A classic cheesecake, made Keto-friendly. Deliciously rich and creamy with a crumbly almond flour crust, it’s full of natural flavors and goodness from butter, eggs, and cream cheese — no sugar added! Sweetened naturally with erythritol." ,
-           price:"$12.50"
-      },
-      {
-          img:"https://www.ketodelia.ca/cdn/shop/products/KetoBagelsCheddarJalapeno.jpg?v=1679087800&width=360",
-          head:"Keto Bagel Cheddar Jalapeno - 4 pack",
-          descr:"Our cheddar jalapeno bagels are made of almond flour, mozzarella and cream cheese. They are gluten free, sugar free and delicious! Pack of 4.",
-          price:"$23.95",
-  
-      }
-  ]
+
   const testdata=[
     {
       img:"https://images.loox.io/uploads/2023/4/21/1DQjqNfAx.jpg",avtext:"HG", name:"Henriette G." ,date:"4/21/2023",testimonial:"Great we user it for my birthday cake. Delicious cake."
@@ -147,20 +81,9 @@ function Main(props) {
    <h1 className='text-2xl md:text-4xl text-center m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
      Our Customers
    </h1>
-  <div className='hidden md:grid md:grid-cols-3 lg:grid-cols-3 w-full items-center justify-center md:gap-10  lg:gap-40 px-4 md:px-10'>
-  {testdata.map((items) => (
-        <Testimonials key={items.id} data={items} />
-      ))}
+  
+  <TestimonialsGrid testimonials={testdata} />
 
-  </div>
-  <div className='block sm:block md:hidden bg-blue-300 relative'>
-    <Carousel arrows  autoplay  prevArrow={<CustomPrevArrow />}
-  nextArrow={<CustomNextArrow />} >
-      {testdata.map((items) => (
-        <Testimonials key={items.id} data={items} />
-      ))}
-    </Carousel>
-  </div>
 
  </div>
 

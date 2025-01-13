@@ -17,7 +17,7 @@ function Categories(props){
 
                <div className="relative h-auto md:h-[50%] mt-4 space-y-2 md:space-y-4">
                    <div className="text-sm md:text-base font-bold">
-                       <a href="">{props.data.name}</a>
+                       <p>{props.data.name}</p>
                    </div>
                    <div className="text-sm md:text-base font-light line-clamp-3 md:line-clamp-none">
                        {props.data.description}

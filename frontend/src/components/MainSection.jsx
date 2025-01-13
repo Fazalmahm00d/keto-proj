@@ -16,12 +16,12 @@ function MainSection() {
        MORE DELICIOUS
      </h1>
      
-     <h3 className='text-lg md:text-xl mt-3 px-2 md:px-0'>
+     <p className='text-lg md:text-xl mt-3 px-2 md:px-0'>
        KETO FRIENDLY LOW CARB 100% GLUTEN FREE
-     </h3>
+     </p>
      
      <div className='mt-5 w-full md:w-auto'>
-       <button onClick={handleClick} className='text-white bg-[#94619a] rounded-3xl text-l p-3 px-[30px] w-full md:w-auto min-w-[200px]'>
+       <button aria-label="Order btn" onClick={handleClick} className='text-white bg-[#94619a] rounded-3xl text-l p-3 px-[30px] w-full md:w-auto min-w-[200px]'>
          Order Online
        </button>
      </div>

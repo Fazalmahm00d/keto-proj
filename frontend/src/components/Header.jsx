@@ -113,7 +113,7 @@ function Header(props) {
                 />
               </Link>
       
-              <button 
+              <button aria-label="Menu button"
                 className="md:hidden absolute right-4 top-4"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
@@ -135,7 +135,7 @@ function Header(props) {
       
               <div className='flex flex-wrap items-center justify-center gap-4 text-[rgba(61,8,27,0.75)] mt-4 md:mt-0'>
                 <div className='flex items-center'>
-                  <a className='hover:underline text-sm md:text-base' href="tel:+1416-623-0317">(416) 623-0317</a>
+                  <a aria-label="Phone number" className='hover:underline text-sm md:text-base' href="tel:+1416-623-0317">(416) 623-0317</a>
                 </div>
                 
                 <div className='flex items-center gap-2'>
@@ -161,7 +161,7 @@ function Header(props) {
       
                 {isEmail && (
                   <div>
-                    <button className="bg-green-600 text-white px-3 py-2 rounded text-sm" onClick={LogOutHandler}>
+                    <button aria-label="Log out" className="bg-green-600 text-white px-3 py-2 rounded text-sm" onClick={LogOutHandler}>
                       Log Out
                     </button>
                   </div>

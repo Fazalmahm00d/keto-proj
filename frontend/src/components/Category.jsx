@@ -16,9 +16,9 @@ function Category(props) {
                </div>
                <div className="mt-2 md:mt-4 font-bold text-base md:text-l px-2 md:ml-5 
                    after:content-['\2192'] after:ml-2 after:text-xl cursor-pointer">
-                   <a className="decoration-none hover:underline">
+                   <p className="decoration-none hover:underline">
                        {props.data}
-                   </a>
+                   </p>
                </div>
            </Link>
        </div>

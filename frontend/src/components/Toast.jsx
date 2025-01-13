@@ -36,7 +36,7 @@ export const Toast = ({ message, type, onClose }) => {
           )}
           <span>{message}</span>
         </div>
-        <button onClick={onClose} className="btn btn-sm btn-ghost">
+        <button aria-label="close button" onClick={onClose} className="btn btn-sm btn-ghost">
           Close
         </button>
       </div>

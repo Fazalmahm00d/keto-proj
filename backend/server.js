@@ -11,11 +11,15 @@ const { addToCart, getCart, deleteCartItem } = require("./controller/userControl
 const { createProduct, getAllProducts, getProductById } = require("./controller/productController");
 
 app.use(
-    cors({
-      origin: "https://ketodalia.vercel.app", // Replace with the frontend's URL
-      credentials: true, // Allow cookies and other credentials
-    })
-  );
+  cors({
+    origin: [
+      "https://ketodalia.vercel.app", // Production frontend URL
+      "http://localhost:5173", // Localhost URL for development
+    ],
+    credentials: true, // Allow cookies and other credentials
+  })
+);
+
 app.use(express.json());
 
 // Connect to MongoDB

@@ -78,7 +78,7 @@ function Login(props) {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-  
+      console.log(result,"result from google login  ")
       // Extract user details
       const user =  result.user;
       // Extract tokens
@@ -218,7 +218,7 @@ function Login(props) {
           </p>
 
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6">
-            <button
+            <button aria-label="Google login"
               onClick={handleGoogleLogin}
               className="btn btn-outline btn-primary-content flex items-center gap-2 w-full sm:w-[48%]"
             >
@@ -227,7 +227,7 @@ function Login(props) {
             </svg>
               Google
             </button>
-            <button
+            <button aria-label="Facebook login"
               onClick={handleGoogleLogin}
               className="btn btn-outline btn-primary-content flex items-center gap-2 w-full sm:w-[48%]"
             >
@@ -298,7 +298,7 @@ function Login(props) {
                 {passwordMessage}
               </p>
             </div>
-            <button
+            <button aria-label="Submit button"
               type="submit"
               disabled={mutation.isLoading}
               className="btn btn-primary w-full"
@@ -334,7 +334,7 @@ function Login(props) {
             {isLogin ? (
               <p>
                 Don't have an account?{" "}
-                <button
+                <button aria-label="change to signup"
                   onClick={() => setIsLogin(false)}
                   className="link link-primary"
                 >
@@ -344,7 +344,7 @@ function Login(props) {
             ) : (
               <p>
                 Already have an account?{" "}
-                <button
+                <button aria-label="change to login"
                   onClick={() => setIsLogin(true)}
                   className="link link-primary"
                 >
