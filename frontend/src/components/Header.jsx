@@ -1,10 +1,7 @@
-import { useContext, useEffect, useState } from "react";
+import {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "./contextAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../ReduxStore/Authenticate";
-import { dataAction } from "../ReduxStore/dataCart";
-import axios from "axios";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
@@ -15,7 +12,6 @@ function Header(props) {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
-    const cartItems=useSelector((state)=>state.dataReducer.cartItems)
     const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
 
     const[length,setLength]=useState(0)
@@ -76,19 +72,19 @@ function Header(props) {
     getCartItem()
     },[isAuthenticate])
 
-    useEffect(() => {
-      const checkSession = () => {
-        const authToken = Cookies.get("authToken");
-        if (!authToken) {
-          showSessionExpiredPopup();
-        }
-      };
+    // useEffect(() => {
+    //   const checkSession = () => {
+    //     const authToken = Cookies.get("authToken");
+    //     if (!authToken) {
+    //       showSessionExpiredPopup();
+    //     }
+    //   };
   
-      const interval = setInterval(checkSession, 30000); // Check every 30s
+    //   const interval = setInterval(checkSession, 30000); // Check every 30s
   
-      // Cleanup on unmount
-      return () => clearInterval(interval);
-    }, []);
+    //   // Cleanup on unmount
+    //   return () => clearInterval(interval);
+    // }, []);
     return (
           <div className="w-full">
             <div className='banner hidden md:block bg-[rgba(100,13,152,1)] text-white w-full py-2 text-center text-sm md:text-base'>
@@ -125,20 +121,19 @@ function Header(props) {
               <nav className={`${isMenuOpen ? 'flex' : 'hidden'} md:flex flex-col md:flex-row w-full md:w-auto mt-4 md:mt-0`}>
                 <ul className='flex flex-col md:flex-row gap-3 list-none text-[rgba(61,8,27,0.75)] font-600 items-center'>
                   <Link to="/menu"><li className="py-2 md:py-0">Menu</li></Link>
-                  <li className="py-2 md:py-0">FAQ</li>
+                  <Link to="/faq"><li className="py-2 md:py-0">FAQ</li></Link>
                   <Link to="/aboutus"><li className="py-2 md:py-0">About</li></Link>
-                  <li className="py-2 md:py-0">Gift cards</li>
                   <Link to="/contact"><li className="py-2 md:py-0">Contact</li></Link>
-                  <li className="py-2 md:py-0">Locations</li>
+                  <Link to="/location"><li className="py-2 md:py-0">Location</li></Link>
                 </ul>
               </nav>
       
               <div className='flex flex-wrap items-center justify-center gap-4 text-[rgba(61,8,27,0.75)] mt-4 md:mt-0'>
                 <div className='flex items-center'>
-                  <a aria-label="Phone number" className='hover:underline text-sm md:text-base' href="tel:+1416-623-0317">(416) 623-0317</a>
+                  <a aria-label="Phone number" className='hidden md:block   hover:underline text-sm md:text-base' href="tel:+1416-623-0317">(416) 623-0317</a>
                 </div>
                 
-                <div className='flex items-center gap-2'>
+                <div className='flex items-center gap-4 px-6'>
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
                   </svg>

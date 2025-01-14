@@ -1,5 +1,4 @@
-import { useContext, useState } from "react";
-import { CartContext } from "./contextAPI";
+import {  useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { authAction } from "../ReduxStore/Authenticate";
@@ -9,7 +8,6 @@ import { auth, provider } from "../../firebase-config";
 import { useMutation } from "@tanstack/react-query";
 import { loginGoogle, sendToBackend } from "../lib/authapi";
 import { Toast } from "./Toast";
-import Header from "./Header";
 
 function Login(props) {
   
@@ -17,7 +15,7 @@ function Login(props) {
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
   console.log("in the login page")
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
   const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
 
@@ -170,7 +168,7 @@ function Login(props) {
             onClose={() => setToast({ ...toast, isVisible: false })}
           />
         )}
-        <div className="p-10 md:p-6 text-center text-white md:w-1/2">
+        <div className="hidden md:block p-10 md:p-6 text-center text-white md:w-1/2">
           <div className=" p-6 rounded-md my-6 w-fit backdrop-blur-3xl backdrop-brightness-125	 bg-white/60">
           <img 
                   src="//www.ketodelia.ca/cdn/shop/files/Ketodelia_Logo_1b.png?v=1664321580" 
@@ -209,7 +207,7 @@ function Login(props) {
           </ul>
         </div>
 
-        <div className="bg-white rounded-lg shadow-xl px-10 md:w-[400px] my-10 md:p-8">
+        <div className="bg-white rounded-lg shadow-xl px-10 md:w-[400px] my-10 py-3 md:p-8">
           <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
             {isLogin ? "Welcome Back" : "Create Your Account"}
           </h1>

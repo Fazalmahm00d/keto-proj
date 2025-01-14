@@ -8,7 +8,8 @@ export async function updateCart(obj) {
         return response
         // dispatch(dataAction.setCartArr(response.data.user.cart))
     } catch(error) {
-        console.error("err:", error)
+        console.error("err: in update  cart", error)
+        throw error
     }
 }
 

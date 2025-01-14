@@ -4,6 +4,7 @@ import MenuItems from "./MenuItems";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../lib/productapi";
 import { useQuery } from "@tanstack/react-query";
+import ProductCard from "./ProductCard";
 
 function Menu(props) {
   const [menuItems, setMenuItems] = useState({
@@ -42,30 +43,30 @@ function Menu(props) {
       <div className="flex justify-center">
         <div className='h-auto p-[20px] md:p-[10px] flex flex-col items-start w-full md:w-[80%]'>
           <h1 className='font-bold text-2xl ml-8 mb-4'>Appetizers</h1>
-          <div className='grid grid-cols-1  lg:grid-cols-2 gap-10 p-[30px]'>
+          <div className='w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
             {menuItems.appetizers.map((item) => {
-              return <MenuItems key={item.id} data={item} />;
+              return <ProductCard key={item.id} data={item} />;
             })}
           </div>
           
           <h1 className='font-bold text-2xl ml-8 mb-4'>Keto Breakfast</h1>
-          <div className='grid grid-cols-1  lg:grid-cols-2 gap-10 p-[30px]'>
+          <div className='w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
             {menuItems.breakfastItems.map((item) => {
-              return <MenuItems key={item.id} data={item} />;
+              return <ProductCard key={item.id} data={item} />;
             })}
           </div>
 
           <h1 className='font-bold text-2xl ml-8 mb-4'>Salads</h1>
-          <div className='grid grid-cols-1  lg:grid-cols-2 gap-10 p-[30px]'>
+          <div className='w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3  justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
             {menuItems.salads.map((item) => {
-              return <MenuItems key={item.id} data={item} />;
+              return <ProductCard key={item.id} data={item} />;
             })}
           </div>
 
           <h1 className='font-bold text-2xl ml-8 mb-4'>Keto Mains</h1>
-          <div className='grid grid-cols-1  lg:grid-cols-2 gap-10 p-[30px]'>
+          <div className='w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around gap-2 sm:gap-4 lg:gap-8 '>
             {menuItems.mainDishes.map((item) => {
-              return <MenuItems key={item.id} data={item} />;
+              return <ProductCard key={item.id} data={item} />;
             })}
           </div>
         </div>

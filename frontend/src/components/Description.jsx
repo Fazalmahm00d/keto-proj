@@ -2,7 +2,7 @@ function Description() {
     return (
       <div className="flex justify-center items-center px-4 py-6 lg:py-10">
         <div className="text-[#3d081b] w-full md:w-[90%] lg:w-[80%] text-center lg:text-left">
-          <h2 className="font-bold text-2xl md:text-3xl lg:text-4xl">
+          <h2 className="font-bold text-2xl md:text-3xl lg:text-6xl">
             When yummy meets healthy
           </h2>
           <p className="font-light text-sm md:text-base lg:text-lg tracking-wider mt-4">

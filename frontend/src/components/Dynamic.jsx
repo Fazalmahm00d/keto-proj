@@ -16,6 +16,7 @@ function Dynamic(){
     const isEmail = useSelector((state)=>state.authReducer.isEmail)
     const queryClient = useQueryClient();
     const [showToast, setShowToast] = useState(false);
+    const [errorToast, setErrorToast] = useState(false);
 
     const cartMutate=useMutation({
         mutationFn:updateCart,
@@ -35,7 +36,8 @@ function Dynamic(){
                     },
                     onError:(error)=>{
                         console.error("err:", error)
-
+                        console.log("Cart update error:", error);
+                        setErrorToast(true);
                     }
     })
     const {data:productData,isLoading:productDataLoading,isError:productDataError}=useQuery({
@@ -111,6 +113,23 @@ function Dynamic(){
               </div>
             </div>
           )}
+          {errorToast && (
+  <div className="fixed top-0 right-0 m-4 z-50">
+    <div className="alert alert-error shadow-lg flex items-center gap-2">
+      
+      <span className="font-semibold text-white">
+       Log In to order
+      </span>
+      <button
+        className="btn btn-xs btn-circle btn-outline text-white hover:bg-red-700"
+        onClick={() => setErrorToast(false)}
+        aria-label="Close notification"
+      >
+        ✕
+      </button>
+    </div>
+  </div>
+)}
           <div>
             <Link to="/menu">
               <button className="text-[#512b55] underline">Back to menu</button>

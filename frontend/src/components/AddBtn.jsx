@@ -8,6 +8,7 @@ function AddBtnComponent(props) {
   const dispatch = useDispatch();
   const isEmail = useSelector((state) => state.authReducer.isEmail);
   const [showToast, setShowToast] = useState(false);
+  const [errorToast, setErrorToast] = useState(false);
 
   const queryClient = useQueryClient();
   const cartMutate = useMutation({
@@ -29,11 +30,13 @@ function AddBtnComponent(props) {
       }
     },
     onError: (error) => {
-      console.error("Cart update error:", error);
+      console.log("inside on error")
+      console.log("Cart update error:", error);
+      setErrorToast(true);
     }
   });
 
-  async function sendToFb(id) {
+   function sendToFb(id) {
     console.log("send2fb called");
     const obj = {
       isEmail,
@@ -76,21 +79,41 @@ function AddBtnComponent(props) {
           </div>
         </div>
       )}
+      {errorToast && (
+  <div className="fixed top-0 right-0 m-4 z-50">
+    <div className="alert alert-error shadow-lg flex items-center gap-2">
+      
+      <span className="font-semibold text-white">
+       Log In to order
+      </span>
       <button
-        disabled={cartMutate.isPending}
-        onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
-          sendToFb(props.item);
-        }}
-        className="border-2 border-gray-900 rounded-3xl p-3 w-full my-2 sm:w-48 text-base md:absolute md:top-14   sm:transform-none"
+        className="btn btn-xs btn-circle btn-outline text-white hover:bg-red-700"
+        onClick={() => setErrorToast(false)}
+        aria-label="Close notification"
       >
-        {cartMutate.isPending ? (
-          <span className="loading loading-dots loading-sm "></span>
-        ) : (
-          "Add to Order"
-        )}
+        ✕
       </button>
+    </div>
+  </div>
+)}
+      <button
+  disabled={cartMutate.isPending}
+  onClick={(e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    sendToFb(props.item);
+  }}
+  className={`border-2 border-[rgba(61,8,27,0.75)] rounded-3xl p-3 w-full my-2 sm:w-48 text-base text-[rgba(61,8,27,0.75)] font-medium
+    ${cartMutate.isPending ? 'bg-gray-300 cursor-not-allowed' : 'bg-transparent hover:bg-[rgba(61,8,27,0.75)] hover:text-white'} 
+     sm:transform-none transition-colors duration-300`}
+>
+  {cartMutate.isPending ? (
+    <span className="loading loading-dots loading-sm  "></span>
+  ) : (
+    "Add to Order"
+  )}
+</button>
+
     </div>
   );
 }

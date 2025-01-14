@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function Footer() {
     return (
       <div className="bg-[#f5eff5] text-[#3d091bbf] text-l">
@@ -18,19 +20,18 @@ function Footer() {
             <div className="w-full sm:w-[40%] md:w-[25%] lg:w-[20%]">
               <h2 className="font-bold text-xl">Quick Links</h2>
               <ul className="mt-5 space-y-2">
-                <li>About Us</li>
+                <li><Link to="/aboutus">About Us</Link></li>
                 <li>Keto Bakery</li>
                 <li>FAQs</li>
-                <li>Gift Cards</li>
-                <li>Contact</li>
+                <li><Link to="/contact">Contact</Link></li>
                 <li>Keto Blog</li>
               </ul>
             </div>
             <div className="hidden w-full md:block md:w-[25%] lg:w-[20%]">
               <h2 className="font-bold text-xl">Information</h2>
               <ul className="mt-5 space-y-2">
-                <li>What Our Guests Are Saying</li>
-                <li>Locations</li>
+                <li><Link to="/#testimonials">What Our Guests Are Saying</Link></li>
+                <li><Link to="/location">Locations</Link></li>
                 <li>Return Policy</li>
                 <li>Privacy Policy</li>
                 <li>Shipping Policy</li>
@@ -40,17 +41,44 @@ function Footer() {
           </div>
   
           <div className="flex justify-center items-center gap-4 mt-8">
-            <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16"> {/* Facebook Icon */}</svg>
-            <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16"> {/* Pinterest Icon */}</svg>
-            <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16"> {/* Instagram Icon */}</svg>
-            <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16"> {/* TikTok Icon */}</svg>
-            <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16"> {/* YouTube Icon */}</svg>
-          </div>
+                    {/* Facebook Icon */}
+                    <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm2.66 4H9.22c-.41 0-.66.35-.66.76V6h2.1l-.3 2H8.56v6H6.44V8H5V6h1.44V4.41C6.44 2.76 7.19 2 8.76 2H10.6z" />
+                    </svg>
+
+                    {/* Pinterest Icon */}
+                    <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 0a8 8 0 1 0 8 8A8 8 0 0 0 8 0zm.34 12.38c-.44 0-.86-.22-1-.47l-.18.71-.1.42a3.67 3.67 0 0 1-.75 1.37c-.13.15-.27.16-.36 0-.14-.22-.2-.49-.14-.79.14-.74.44-1.86.54-2.64a2.75 2.75 0 0 1-.68-2.1c0-1.11.6-2.01 1.36-2.01.63 0 1.11.5 1.11 1.13 0 .69-.44 1.72-.68 2.66-.19.8.38 1.45 1.15 1.45 1.38 0 2.32-1.68 2.32-3.68a2.58 2.58 0 0 0-2.65-2.6 2.74 2.74 0 0 0-2.85 2.94 2.55 2.55 0 0 0 .54 1.66.14.14 0 0 1 0 .14c-.06.2-.2.64-.24.73a.14.14 0 0 1-.25.05A3.25 3.25 0 0 1 5.3 6.18a4.38 4.38 0 0 1-1-2.74C4.3 1.8 6 0 8.68 0a4.58 4.58 0 0 1 4.8 4.7c0 2.7-1.4 4.68-3.68 4.68z" />
+                    </svg>
+
+                    {/* Instagram Icon */}
+                    <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 2.2A5.8 5.8 0 1 0 13.8 8 5.81 5.81 0 0 0 8 2.2zM8 10.4a2.4 2.4 0 1 1 2.4-2.4A2.4 2.4 0 0 1 8 10.4zm3.6-6.4a.8.8 0 1 1-.8.8.8.8 0 0 1 .8-.8z" />
+                      <circle cx="8" cy="8" r="1.6" />
+                    </svg>
+
+                    {/* TikTok Icon */}
+                    <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M9.7 3V6a3 3 0 0 0 3 3h1.3a6.5 6.5 0 1 1-6.5-6.5 6.5 6.5 0 0 1 2.2.4z" />
+                    </svg>
+
+                    {/* YouTube Icon */}
+                    <svg className="w-6 h-6 text-[#3d091bbf]" fill="currentColor" viewBox="0 0 16 16">
+                      <path d="M8 3.1a5.1 5.1 0 1 0 5.1 5.1A5.11 5.11 0 0 0 8 3.1zm1.6 5.67L6.8 9.37a.27.27 0 0 1-.4-.24V7.12a.27.27 0 0 1 .4-.24l2.8 1.6a.27.27 0 0 1 0 .47z" />
+                    </svg>
+                  </div>
         </div>
   
-        <div className="mt-6 border-t border-gray-300 pt-4 flex justify-center items-center flex-wrap gap-4">
-          <svg className="w-10 h-6" viewBox="0 0 38 24">{/* American Express */}</svg>
-          <svg className="w-10 h-6" viewBox="0 0 165.521 105.965">{/* Apple Pay */}</svg>
+                <div className="mt-6 border-t border-gray-300 pt-4 flex justify-center items-center flex-wrap gap-4">
+          
+                    <svg className="w-16 h-16" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 48 48">
+          <path fill="#1976D2" d="M45,35c0,2.209-1.791,4-4,4H7c-2.209,0-4-1.791-4-4V13c0-2.209,1.791-4,4-4h34c2.209,0,4,1.791,4,4V35z"></path><path fill="#FFF" d="M22.255 20l-2.113 4.683L18.039 20h-2.695v6.726L12.341 20h-2.274L7 26.981h1.815l.671-1.558h3.432l.682 1.558h3.465v-5.185l2.299 5.185h1.563l2.351-5.095v5.095H25V20H22.255zM10.135 23.915l1.026-2.44 1.066 2.44H10.135zM37.883 23.413L41 20.018h-2.217l-1.994 2.164L34.86 20H28v6.982h6.635l2.092-2.311L38.767 27h2.21L37.883 23.413zM33.728 25.516h-4.011v-1.381h3.838v-1.323h-3.838v-1.308l4.234.012 1.693 1.897L33.728 25.516z"></path>
+          </svg>
+
+          
+          <svg className="w-16 h-16" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="100" height="100" viewBox="0 0 50 50">
+              <path d="M 9.984375 15.001953 C 9.149375 15.041953 8.1182969 15.573313 7.5292969 16.320312 C 6.9892969 16.964312 6.5275313 18.010188 6.6445312 18.992188 C 7.5875313 19.074188 8.5301406 18.500438 9.1191406 17.773438 C 9.6991406 17.026437 10.082375 16.024953 9.984375 15.001953 z M 18 17 L 18 32 L 20.375 32 L 20.375 27 L 23.625 27 C 26.608 27 28.75 24.925 28.75 22 C 28.75 19.075 26.647125 17 23.703125 17 L 18 17 z M 20.375 19 L 23.125 19 C 25.172 19 26.375 20.105 26.375 22 C 26.375 23.895 25.182 25 23.125 25 L 20.375 25 L 20.375 19 z M 9.875 19.5 C 8.5 19.5 7.517 20.25 6.875 20.25 C 6.223 20.25 5.25 19.509766 4.125 19.509766 C 2.75 19.509766 1.4033594 20.372859 0.69335938 21.630859 C -0.76564063 24.145859 0.31460937 27.869016 1.7246094 29.916016 C 2.4156094 30.930016 3.25 32 4.375 32 C 5.406 31.961 5.755 31.375 7 31.375 C 8.254 31.375 8.625 32 9.75 32 C 10.875 32 11.556094 30.969078 12.246094 29.955078 C 13.034094 28.805078 13.356 27.684 13.375 27.625 C 13.356 27.606 11.197734 26.77725 11.177734 24.28125 C 11.158734 22.19525 12.879031 21.200578 12.957031 21.142578 C 11.984031 19.700578 10.375 19.5 10 19.5 L 9.875 19.5 z M 34.199219 21 C 31.710219 21 29.870734 22.395453 29.802734 24.314453 L 31.912109 24.314453 C 32.086109 23.402453 32.948859 22.804688 34.130859 22.804688 C 35.563859 22.804688 36.373047 23.460969 36.373047 24.667969 L 36.375 25.5 L 33.443359 25.654297 C 30.722359 25.815297 29.25 26.908594 29.25 28.808594 C 29.25 30.727594 30.770219 32.001953 32.949219 32.001953 C 34.421219 32.001953 35.78725 31.270328 36.40625 30.111328 L 36.455078 30.111328 L 36.455078 31.886719 L 38.623047 31.886719 L 38.623047 24.515625 C 38.624047 22.376625 36.882219 21 34.199219 21 z M 39.5 21 L 43.507812 31.949219 L 43.292969 32.615234 C 42.930969 33.744234 42.344828 34.177734 41.298828 34.177734 C 41.119828 34.177734 40.781 34.159625 40.625 34.140625 L 40.625 35.945312 C 40.783 35.980313 41.332906 36 41.503906 36 C 43.810906 36 44.896703 35.132047 45.845703 32.498047 L 50 21 L 47.595703 21 L 44.808594 29.884766 L 44.759766 29.884766 L 41.972656 21 L 39.5 21 z M 36.375 27 L 36.367188 27.867188 C 36.367188 29.254188 35.166125 30.242188 33.578125 30.242188 C 32.329125 30.242188 31.535156 29.653953 31.535156 28.751953 C 31.535156 27.820953 32.300672 27.279359 33.763672 27.193359 L 36.375 27 z"></path>
+                  </svg>
         </div>
       </div>
     );
