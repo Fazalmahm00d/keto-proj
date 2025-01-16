@@ -52,9 +52,7 @@ function Main(props) {
     }
 
   ]
-  useEffect(()=>{
 
-  },[])
   return (
     <div className='relative'>
  <Header className='sticky' Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate} />

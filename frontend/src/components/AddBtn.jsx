@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../lib/cartapi";
 import { dataAction } from "../ReduxStore/dataCart";
 
+
 function AddBtnComponent(props) {
   const dispatch = useDispatch();
   const isEmail = useSelector((state) => state.authReducer.isEmail);

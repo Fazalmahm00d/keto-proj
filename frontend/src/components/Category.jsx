@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 function Category(props) {
    return (
-       <div className="w-full  p-4 text-[rgba(61,8,27,0.75)]">
+       <div data-testid="category-container" className="w-full  p-4 text-[rgba(61,8,27,0.75)]">
            <Link to={'/menu'}>
                <div className="overflow-hidden">
                    <img 

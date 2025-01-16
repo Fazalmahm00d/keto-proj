@@ -1,7 +1,7 @@
 
 import { Carousel } from 'antd';
 
-const TestimonialCard = ({ data }) => {
+export const TestimonialCard = ({ data }) => {
   const { img, name, avtext, date, testimonial } = data;
   
   return (
@@ -99,10 +99,10 @@ const TestimonialsGrid = ({ testimonials }) => {
   }
 
   return (
-    <section id='testimonials'>
+    <section id='testimonials' >
       {/* Grid layout for md+ screens */}
       <div className="hidden md:block w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 h-auto">
+        <div data-testid="testimonials-grid" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 h-auto">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={`${testimonial.name}-${index}`} data={testimonial} />
           ))}
