@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom";
+
 function LocBanner() {
+  const navigate=useNavigate()
     return (
       <div className="relative">
         <div className="relative flex justify-center items-center">
@@ -11,7 +14,9 @@ function LocBanner() {
             loading="lazy"
           />
           <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-30 z-30">
-            <div className="bg-white text-[#3d081b] text-xl md:text-3xl lg:text-5xl px-6 py-4 font-bold border-2 rounded-lg border-[rgba(61,8,27,0.75)] shadow-lg text-center">
+            <div onClick={()=>{
+              navigate('/location')
+            }} className="bg-white cursor-pointer text-[#3d081b] text-xl md:text-3xl lg:text-5xl px-6 py-4 font-bold border-2 rounded-lg border-[rgba(61,8,27,0.75)] shadow-lg text-center">
               Our Locations & Hours
             </div>
           </div>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
 import DeleteBtnComponent from "./DelBtn";
+import { Loader2 } from 'lucide-react';
 
 function Cart() {
   const isEmail = useSelector((state) => state.authReducer.isEmail);
@@ -31,6 +32,48 @@ function Cart() {
       setTotalExpenses(total.toFixed(2));
     }
   }, [cartData]);
+  if (cartDataLoading) {
+    return (
+      <div className="flex items-center justify-center p-8">
+        <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        <span className="ml-2">Loading cart...</span>
+      </div>
+    );
+  }
+
+  if (cartDataError) {
+    return (
+      <div className="p-4 rounded-md bg-red-50">
+        <div className="flex items-center">
+          <div className="flex-shrink-0">
+            <span className="text-red-400">⚠️</span>
+          </div>
+          <div className="ml-3">
+            <h3 className="text-sm font-medium text-red-800">
+              Error loading cart
+            </h3>
+            <div className="mt-2 text-sm text-red-700">
+              {error}
+            </div>
+            <button 
+              onClick={fetchCartData}
+              className="mt-2 px-4 py-2 bg-red-100 text-red-800 rounded-md hover:bg-red-200"
+            >
+              Try again
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!cartData) {
+    return (
+      <div className="p-4 text-gray-500">
+        No items in cart
+      </div>
+    );
+  }
 
   return (
     <div className="fixed top-0 left-0 flex justify-center items-center h-screen w-full bg-neutral-500 bg-opacity-70 z-50">

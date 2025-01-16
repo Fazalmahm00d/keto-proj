@@ -13,7 +13,7 @@ function Header(props) {
     const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
     const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
-
+    const cartItems=useSelector((state)=>state.authReducer.cartItems)
     const[length,setLength]=useState(0)
 
     const handleToast = (message, type) => {
@@ -61,10 +61,13 @@ function Header(props) {
     window.location.href = "/login";
   };
     useEffect(()=>{
-      if(cartData){
+      if(isEmail&& cartData){
         setLength(cartData?.length)
       }
-    },[cartData])
+      else{
+        setLength(0)
+      }
+    },[cartData,isEmail])
     
     useEffect(()=>{
       console.log(isEmail,"email value")
@@ -72,26 +75,27 @@ function Header(props) {
     getCartItem()
     },[isAuthenticate])
 
-    // useEffect(() => {
-    //   const checkSession = () => {
-    //     const authToken = Cookies.get("authToken");
-    //     if (!authToken) {
-    //       showSessionExpiredPopup();
-    //     }
-    //   };
+    useEffect(() => {
+      const checkSession = () => {
+        const authToken = Cookies.get("authToken");
+        if (!authToken) {
+          showSessionExpiredPopup();
+        }
+      };
   
-    //   const interval = setInterval(checkSession, 30000); // Check every 30s
+      const interval = setInterval(checkSession, 3600000); // Check every 30s
   
-    //   // Cleanup on unmount
-    //   return () => clearInterval(interval);
-    // }, []);
+      return () => clearInterval(interval);
+    }, []);
+
+    
     return (
           <div className="w-full">
             <div className='banner hidden md:block bg-[rgba(100,13,152,1)] text-white w-full py-2 text-center text-sm md:text-base'>
               Order now and enjoy instant delivery for orders over $25
             </div>
             
-            <div className='flex flex-col md:flex-row bg-white justify-between items-center w-full px-4 py-2 md:h-[100px] md:px-8'>
+            <div className='flex flex-col my-4  md:flex-row bg-white justify-between items-center w-full px-4 py-2 md:h-[100px] md:px-8'>
               <Link to="/" className="py-2">
                 {toast.isVisible && (
                   <Toast

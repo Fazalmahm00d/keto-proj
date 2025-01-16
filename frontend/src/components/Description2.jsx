@@ -23,7 +23,7 @@ function Description2() {
                 We're proud to offer <span className="font-medium">pickup and same-day or next-day delivery</span> in Toronto and nearby cities, making it easy for you to enjoy our delicious keto-friendly meals whenever and wherever you choose. Visit us today and discover the taste of healthy eating at its finest!
             </p>
             <div className="mt-6">
-                <button onClick={handleClick} className="bg-[#94619a] text-white px-6 py-3 uppercase font-medium text-sm sm:text-base rounded-full border-[#3d081b] border-0.5 shadow-[black_3px_6px_3px_0px]">
+                <button onClick={handleClick} className="bg-[#94619a] text-white px-6 py-3 uppercase font-medium text-sm sm:text-base rounded-full border-[#3d081b] border-0.5 shadow-[black_2px_4px_2px_0px]">
                     Explore Our Menu
                 </button>
             </div>

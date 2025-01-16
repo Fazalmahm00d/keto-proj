@@ -21,10 +21,8 @@ function Footer() {
               <h2 className="font-bold text-xl">Quick Links</h2>
               <ul className="mt-5 space-y-2">
                 <li><Link to="/aboutus">About Us</Link></li>
-                <li>Keto Bakery</li>
-                <li>FAQs</li>
+                <li><Link to="/faq">FAQs</Link></li>
                 <li><Link to="/contact">Contact</Link></li>
-                <li>Keto Blog</li>
               </ul>
             </div>
             <div className="hidden w-full md:block md:w-[25%] lg:w-[20%]">

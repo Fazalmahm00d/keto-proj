@@ -3,8 +3,8 @@ import Cookies from "js-cookie";
 const authSlice=createSlice({
     name:"Authenticate",
     initialState:{
-        isEmail:null,
-        isAuthenticate:Cookies.get('authToken')
+        isEmail:false,
+        isAuthenticate:!!Cookies.get('authToken')
     },
     reducers:{
         logIn(state){

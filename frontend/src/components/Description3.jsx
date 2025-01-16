@@ -1,6 +1,6 @@
 function Description3() {
     return (
-        <div className="m-5 sm:m-10 w-full max-w-2xl text-left font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
+        <div className=" sm:m-10 w-full max-w-2xl text-left font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
             <div>
                 <p className="mt-6 tracking-wide">
                     Welcome to our Contact Us page! We're always here to answer your questions and address any concerns you might have. Our team is ready to help out in any way we can. Also, we love hearing your suggestions and tips – your feedback is invaluable in making Ketodelia even better. Looking forward to hearing from you!

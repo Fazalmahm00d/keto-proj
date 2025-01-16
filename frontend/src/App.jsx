@@ -10,12 +10,12 @@ import { useEffect, useState } from 'react';
 import Dynamic from './components/Dynamic';
 import Cookies from "js-cookie";
 import { authAction } from './ReduxStore/Authenticate';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Location from './components/Location';
 import FAQ from './components/FAQ';
 function App(){
   const dispatch=useDispatch();
-  const [isAuthenticate,setIsAuthenticate]=useState(Cookies?.get("authToken"))
+  const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
   const email=Cookies?.get("email")
   
   function ScrollToHash() {
@@ -37,16 +37,22 @@ function App(){
     dispatch(authAction.changeEmailValue(email))
     }
   },[email])
+
+  useEffect(()=>{
+    if(isAuthenticate){
+      dispatch(authAction.changeTokenValue(isAuthenticate))
+    }
+  },[isAuthenticate])
   return(
       <div>
         <ScrollToHash />
           <Routes>
-            <Route path="/" element={<Main isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
-            <Route path="/menu" element={<Menu isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
-            <Route path="/aboutus" element={ <AboutUs isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
-            <Route path="/contact" element={<Contact isAuthenticate={isAuthenticate} setIsAuthenticate={setIsAuthenticate}/>}/>
+            <Route path="/" element={<Main/>}/>
+            <Route path="/menu" element={<Menu/>}/>
+            <Route path="/aboutus" element={ <AboutUs/>}/>
+            <Route path="/contact" element={<Contact/>}/>
             <Route path="/login" element={<Login />}/>
-            <Route path='/cart' element={isAuthenticate ? <Cart/>:<Login setIsAuthenticate={setIsAuthenticate}/>}/>
+            <Route path='/cart' element={isAuthenticate ? <Cart/>:<Login />}/>
             <Route path='/faq' element={<FAQ/>}/>
             <Route path='/menu/:id' element={<Dynamic/>}/>
             <Route path='/location' element={<Location/>}/>

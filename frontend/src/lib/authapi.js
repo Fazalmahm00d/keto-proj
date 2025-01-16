@@ -18,10 +18,11 @@ export async function sendToBackend(obj) {
   }
   
 export async function loginGoogle(obj) {
+  console.log(obj,"object in api")
   try{
     const userResponse = await api.post("/api/users/google", {
       email: obj.email,
-      username: obj.displayName,
+      username: obj.username,
   });
   if (userResponse.status === 200 || userResponse.status === 201) {
     // Set UI-related cookies

@@ -19,7 +19,7 @@ function MainSection() {
        MORE DELICIOUS
      </h1>
      
-     <p className='text-lg md:text-xl mt-3 px-2 md:px-0'>
+     <p className='text-lg md:text-xl mt-3 font-bold font-mono  px-2 md:px-0'>
        KETO FRIENDLY LOW CARB 100% GLUTEN FREE
      </p>
      

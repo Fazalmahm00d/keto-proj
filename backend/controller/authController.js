@@ -168,10 +168,11 @@ exports.login = async (req, res) => {
 };
 
 exports.googlelogin= async(req,res)=>{
+  console.log("request body",req.body)
   try{
     const { email , username} =req.body;
   const existingUser = await User.findOne({ email });
-
+    console.log("existing user",existingUser)
   if(existingUser){
     const token = generateToken();
       res.cookie("authToken", token, {
@@ -188,12 +189,14 @@ exports.googlelogin= async(req,res)=>{
     })
   }
   else{
+    
     const newUser = new User({
       email,
       username,
       cart: [],
       wishlist: []
     });
+    console.log("newuser",newUser)
     const savedUser = await newUser.save();
     const token = generateToken();
     res.cookie("authToken", token, {

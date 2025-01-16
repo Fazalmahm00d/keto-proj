@@ -12,7 +12,7 @@ function FAQ() {
     return (
         <div className="">
             <Header/>
-            <h2 className="text-xl md:text-3xl font-semibold text-left container mx-auto text-gray-800 mb-8">
+            <h2 className="text-xl md:text-3xl font-semibold text-left container mx-auto text-gray-800 my-8 px-4">
                 Frequently Asked Questions
             </h2>
             <div className="space-y-6 p-6 md:min-h-[40rem] md:container md:mx-auto ">
