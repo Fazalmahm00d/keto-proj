@@ -96,10 +96,10 @@ function Cart() {
                     <h3 className="font-bold text-gray-800">
                       {item.productId.name}
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="hidden sm:block text-gray-600">
                       Category: {item.productId.category}
                     </p>
-                    <p className="text-gray-600">
+                    <p className="hidden sm:block text-gray-600">
                       Price: ${item.productId.price}
                     </p>
                     <p className="text-gray-600">

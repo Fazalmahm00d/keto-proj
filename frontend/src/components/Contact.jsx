@@ -8,7 +8,7 @@ function Contact(props) {
         <div>
             <Header Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
             <div className="flex flex-col items-center justify-center px-5 md:px-10 lg:px-16">
-                <div className="w-full max-w-4xl">
+                <div className="hidden sm:block w-full max-w-4xl">
                     <Description3></Description3>
                 </div>
                 <div className="w-full max-w-4xl mt-8">

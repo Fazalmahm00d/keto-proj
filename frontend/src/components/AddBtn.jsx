@@ -10,7 +10,7 @@ function AddBtnComponent(props) {
   const isEmail = useSelector((state) => state.authReducer.isEmail);
   const [showToast, setShowToast] = useState(false);
   const [errorToast, setErrorToast] = useState(false);
-
+  console.log(props.items,"props items")
   const queryClient = useQueryClient();
   const cartMutate = useMutation({
     mutationFn: updateCart,
@@ -46,6 +46,7 @@ function AddBtnComponent(props) {
         quantity: 1
       }
     };
+    console.log("obj ",obj)
     cartMutate.mutate(obj);
   }
 

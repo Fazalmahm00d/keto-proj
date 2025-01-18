@@ -20,8 +20,8 @@ function Login(props) {
   const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
 
   // Backend endpoints for login and signup
-  const signUpURL = "https://ketodalia.onrender.com/api/register"; // Replace with your backend's signup endpoint
-  const logInURL = "https://ketodalia.onrender.com/api/login"; // Replace with your backend's login endpoint
+  const signUpURL = "/api/register"; // Replace with your backend's signup endpoint
+  const logInURL = "/api/login"; // Replace with your backend's login endpoint
 
 
   const handleToast = (message, type) => {
@@ -208,6 +208,15 @@ function Login(props) {
         </div>
 
         <div className="bg-white rounded-lg shadow-xl px-10 md:w-[400px] my-10 py-3 md:p-8">
+          <div className="flex justify-end">
+          <button className="" onClick={()=>{
+            navigate('/')
+          }}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z"/>
+        </svg>
+          </button>
+          </div>
           <h1 className="text-xl md:text-2xl font-bold text-center mb-4">
             {isLogin ? "Welcome Back" : "Create Your Account"}
           </h1>
@@ -299,29 +308,10 @@ function Login(props) {
             <button aria-label="Submit button"
               type="submit"
               disabled={mutation.isLoading}
-              className="btn btn-primary w-full"
+              className="btn btn-primary w-full h-full"
             >
               {mutation.isLoading ? (
-                <svg
-                  className="animate-spin h-5 w-5 text-white"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
-                  ></path>
-                </svg>
+                <div className="loading loading-dots h-8 w-8 text-white"></div>
               ) : (
                 "Continue"
               )}

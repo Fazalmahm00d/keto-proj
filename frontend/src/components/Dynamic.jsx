@@ -8,6 +8,8 @@ import { dataAction } from "../ReduxStore/dataCart";
 import { updateCart } from "../lib/cartapi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductById } from "../lib/productapi";
+import { Loader2 } from 'lucide-react';
+import Footer from "./Footer";
 
 function Dynamic(){
     const { id } = useParams(); // Destructure id directly
@@ -79,7 +81,12 @@ function Dynamic(){
         
     // Show loading state while data is being fetched
     if (!filteredData) {
-        return <div>Loading...</div>;
+        return <div>
+          <Header/>
+          <div className="min-h-screen flex justify-center items-center">
+          <div className="h-16 w-16 aspect-square rounded-full border-8 border-[rgba(61,8,27,0.75)]  border-t-transparent border-b-transparent animate-spin"></div>
+          </div><Footer/>
+        </div>;
     }
     
     return(
@@ -159,6 +166,7 @@ function Dynamic(){
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
       
     )

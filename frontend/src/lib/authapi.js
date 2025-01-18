@@ -4,10 +4,11 @@ import Cookies from "js-cookie";
 
 
 export async function sendToBackend(obj) {
-    console.log(obj.data,"data in func")
+    console.log(obj.data,"data in func send2backend")
     try {
     
       const res=await api.post(obj.URL,obj.data);
+      console.log(res,"response from backend")
       return res
       // Update global state with user information
        // Navigate to the home page

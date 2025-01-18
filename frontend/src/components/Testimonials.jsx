@@ -5,7 +5,7 @@ export const TestimonialCard = ({ data }) => {
   const { img, name, avtext, date, testimonial } = data;
   
   return (
-    <article className="w-full bg-[#f5eff5]  text-[rgba(61,8,27,0.75)] overflow-hidden rounded-lg shadow-sm transform transition-transform hover:scale-[1.02]">
+    <article className="w-full bg-[#f5eff5] h-[24rem] sm:h-auto  text-[rgba(61,8,27,0.75)] overflow-hidden rounded-lg shadow-sm transform transition-transform hover:scale-[1.02]">
       {/* Image Container */}
       <div className="relative pt-[75%] bg-gray-100">
         <img 

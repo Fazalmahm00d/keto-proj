@@ -1,11 +1,13 @@
 import {  useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { authAction } from "../ReduxStore/Authenticate";
 import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
 import { Toast } from "./Toast";
+import { Search } from "lucide-react";
+import SearchDropdown from "./SearchDropdown";
 
 function Header(props) {
     const dispatch=useDispatch();
@@ -14,7 +16,23 @@ function Header(props) {
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
     const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
     const cartItems=useSelector((state)=>state.authReducer.cartItems)
-    const[length,setLength]=useState(0)
+    const[length,setLength]=useState(0);
+    const [isInputVisible, setIsInputVisible] = useState(false);
+    const [query, setQuery] = useState("");
+  
+    const handleSearchClick = () => {
+      setIsInputVisible(!isInputVisible);
+      if (isInputVisible) {
+        setQuery(""); // Clear the input when closing
+        debouncedQuery(""); // Clear the search query
+      }
+    };
+  
+    const handleInputChange = (e) => {
+      const value = e.target.value;
+      setQuery(value);
+      debouncedQuery(value);
+    };
 
     const handleToast = (message, type) => {
       setToast({ message, type, isVisible: true });
@@ -74,6 +92,10 @@ function Header(props) {
     console.log(isAuthenticate,"token value ")
     getCartItem()
     },[isAuthenticate])
+    const { pathname } = useLocation();
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scrolling
+    }, [pathname]);
 
     useEffect(() => {
       const checkSession = () => {
@@ -136,11 +158,51 @@ function Header(props) {
                 <div className='flex items-center'>
                   <a aria-label="Phone number" className='hidden md:block   hover:underline text-sm md:text-base' href="tel:+1416-623-0317">(416) 623-0317</a>
                 </div>
+                <div>
+                  
+                </div>
                 
                 <div className='flex items-center gap-4 px-6'>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                  </svg>
+                <button
+        onClick={handleSearchClick}
+        className="p-2 text-gray-600 hover:text-black focus:outline-none"
+        aria-label="Toggle Search"
+      >
+        {isInputVisible ? (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="w-6 h-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M21 21l-4.35-4.35M17 10.5a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0z"
+            />
+          </svg>
+        )}
+      </button>
+      {isInputVisible && (
+        <SearchDropdown/>
+      )}
                   
                   <Link to="/login">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" className="bi bi-person" viewBox="0 0 16 16">

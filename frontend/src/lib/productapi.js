@@ -19,3 +19,4 @@ export async function getAllProducts() {
         console.error(error)
     }
 }
+

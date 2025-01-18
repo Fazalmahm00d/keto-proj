@@ -4,12 +4,11 @@ function Category(props) {
    return (
        <div data-testid="category-container" className="w-full  p-4 text-[rgba(61,8,27,0.75)]">
            <Link to={'/menu'}>
-               <div className="overflow-hidden">
+               <div className="overflow-hidden ">
                    <img 
                        className='w-full h-[12rem] sm:h-[16rem] lg:h-[20rem] object-cover
                            border-2 rounded-lg border-[rgba(61,8,27,0.75)] 
-                           shadow-[rgba(61,8,27,0.75)_6px_15px_6px_0px]
-                           transition-transform duration-500 hover:scale-110 hover:shadow-none'
+                           transition-transform duration-500 hover:scale-110 hover:shadow-none '
                        src={props.img} 
                        alt={props.data}
                    />
