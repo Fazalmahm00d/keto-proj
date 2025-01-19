@@ -15,6 +15,8 @@ import { getAllProducts } from '../lib/productapi';
 import { useEffect, useState } from 'react';
 import { Carousel } from 'antd';
 import TestimonialsGrid from './Testimonials';
+import CategoriesLoadingFallback from '../fallbackloading/CategoryLoader';
+import { Helmet } from 'react-helmet';
 
 
 
@@ -55,6 +57,13 @@ function Main(props) {
 
   return (
     <div className='relative'>
+       <Helmet>
+        {/* Page Title */}
+        <title>Home | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
  <Header className='sticky' Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate} />
  <MainSection />
  
@@ -64,15 +73,22 @@ function Main(props) {
    <Cards data="Safe for Diabetes, Celiac, and Keto-Lovers Alike!"/>
  </div>
 
- <div className='flex flex-col w-full justify-center min-h-[680px] px-4 md:px-[50px] items-center'>
+ <div className='flex flex-col w-full justify-center h-auto px-4 md:px-[50px] items-center'>
    <div className='text-2xl md:text-4xl m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
      Most Loved
    </div>
-   <div className='grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-4 w-full h-full gap-6 md:gap-20 px-4 md:px-20'>
-     {productData?.map((items) => (
-       <Categories key={items.id} data={items}/>
-     ))}
-   </div>
+   <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-4 w-full h-full gap-6 md:gap-20 px-4 md:px-20">
+  {isLoading ? (
+    Array.from({ length: 4 }).map((_, index) => (
+      <CategoriesLoadingFallback key={index} />
+    ))
+  ) : (
+    productData?.map((items) => (
+      <Categories key={items.id} data={items} />
+    ))
+  )}
+</div>
+
  </div>
 
  <div className='w-full justify-center md:min-h-screen p-10 md:p-[50px] items-center py-20'>

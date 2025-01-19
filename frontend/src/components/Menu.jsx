@@ -5,6 +5,8 @@ import { useEffect, useState } from "react";
 import { getAllProducts } from "../lib/productapi";
 import { useQuery } from "@tanstack/react-query";
 import ProductCard from "./ProductCard";
+import LoadingFallback from "../fallbackloading/ProductLoader";
+import { Helmet } from "react-helmet";
 
 function Menu(props) {
   const [menuItems, setMenuItems] = useState({
@@ -34,11 +36,26 @@ function Menu(props) {
     }
   }, [productData]);
 
-  if (productDataLoading) return <div>Loading...</div>;
+  if (productDataLoading) {
+    // Show six placeholders while loading
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 sm:p-10">
+        {Array.from({ length: 9 }).map((_, index) => (
+          <LoadingFallback key={index} />
+        ))}
+      </div>
+    ); }
   if (productDataError) return <div>Error: {error}</div>;
 
   return (
     <div>
+       <Helmet>
+        {/* Page Title */}
+        <title>Menu | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
       <Header Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
       <div className="flex justify-center">
         <div className='h-auto p-[20px] md:p-[10px] flex flex-col items-start w-full md:w-[80%]'>

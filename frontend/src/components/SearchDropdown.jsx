@@ -84,7 +84,7 @@ const SearchDropdown = () => {
       </div>
 
       {isOpen && (query.length >= 2) && (
-        <div className="absolute z-10 w-full mt-1 bg-white rounded-lg shadow-lg border max-h-96 overflow-y-auto">
+        <div className="absolute z-30 w-full mt-1 bg-white rounded-lg shadow-lg border max-h-96 overflow-y-auto">
           {loading ? (
             <div className="p-4 text-center text-gray-500">Loading...</div>
           ) : filteredProducts.length > 0 ? (

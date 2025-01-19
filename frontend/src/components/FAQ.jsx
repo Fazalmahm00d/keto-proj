@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 function FAQ() {
     const [activeIndex, setActiveIndex] = useState(null);
@@ -11,6 +12,13 @@ function FAQ() {
 
     return (
         <div className="">
+             <Helmet>
+        {/* Page Title */}
+        <title>FAQ | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
             <Header/>
             <h2 className="text-xl md:text-3xl font-semibold text-left container mx-auto text-gray-800 my-8 px-4">
                 Frequently Asked Questions

@@ -18,11 +18,7 @@ function Description3() {
                     Thank you for choosing our restaurant, we look forward to hearing from you!
                 </p>
             </div>
-            <div className="flex justify-center">
-                <div className="h-40 w-40 sm:h-48 sm:w-48 lg:h-60 lg:w-60 mt-10 border-[#3d081b] border-2 rounded-lg shadow-[black_6px_15px_6px_0px] overflow-hidden">
-                    <img className="w-full h-full object-cover" src="https://cdn.shopify.com/s/files/1/0665/2110/4628/files/316366734_6318662481286_1019662693495287861_n_480x480.png?v=1675466925" alt="" />
-                </div>
-            </div>
+           
         </div>
     );
 }

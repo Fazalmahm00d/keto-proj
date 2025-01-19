@@ -1,6 +1,6 @@
 function ContactForm() {
     return (
-        <form className="flex flex-col w-full max-w-2xl gap-6 sm:m-10" action="">
+        <form className="flex flex-col w-full max-w-2xl gap-4 sm:m-10" action="">
             <h1 className="text-2xl font-bold mb-2">Contact Form</h1>
             
             <div className="w-full flex flex-col sm:flex-row gap-6">

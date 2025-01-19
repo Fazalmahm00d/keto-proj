@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 function Categories(props){
    return(
        <Link to={`/menu/${props.data._id}`}>
-           <div className="w-full min-h-[300px] md:h-[40rem] lg:h-[50rem] text-[rgba(61,8,27,0.75)] p-4 md:p-0">
-               <div className="overflow-hidden h-[200px] md:h-[50%] w-full 
+           <div className="w-full min-h-[300px] md:h-[36rem]  text-[rgba(61,8,27,0.75)] p-4 md:p-0">
+               <div className="overflow-hidden h-[200px] md:h-[75%] w-full 
                    border-2 rounded-lg border-[rgba(61,8,27,0.75)] 
                    shadow-[rgba(61,8,27,0.75)_1px_8px_1px_0px]">
                    <img 
@@ -15,7 +15,7 @@ function Categories(props){
                    />
                </div>
 
-               <div className="relative h-auto md:h-[50%] mt-4 space-y-2 md:space-y-4">
+               <div className="relative h-auto md:h-[25%] mt-4 space-y-2 md:space-y-4">
                    <div className="text-sm md:text-base font-bold">
                        <p>{props.data.name}</p>
                    </div>

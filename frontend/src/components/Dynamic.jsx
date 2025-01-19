@@ -10,6 +10,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductById } from "../lib/productapi";
 import { Loader2 } from 'lucide-react';
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 
 function Dynamic(){
     const { id } = useParams(); // Destructure id directly
@@ -91,7 +92,15 @@ function Dynamic(){
     
     return(
         <div>
+          <Helmet>
+        {/* Page Title */}
+        <title>{filteredData?.name}</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
         <Header />
+        
         <div className="px-4 py-6 sm:px-6 md:px-10 lg:px-20 xl:px-32">
           {showToast && (
             <div className="fixed toast toast-top toast-end">

@@ -1,11 +1,19 @@
 import Header from "./Header";
 import Description from "./Description";
 import Footer from "./Footer";
+import { Helmet } from "react-helmet";
 import Description2 from "./Description2";
 
 function AboutUs(props) {
     return (
         <div>
+        <Helmet>
+        {/* Page Title */}
+        <title>About Us | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
             <Header Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
             <div className="flex flex-col items-center justify-center">
                 <div className="flex flex-col md:flex-row w-[90%] md:w-[80%] m-5 md:m-20 border-[#3d081b] border-2 rounded-lg shadow-[black_2px_6px_2px_0px] overflow-hidden">

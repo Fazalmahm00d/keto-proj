@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
 import DeleteBtnComponent from "./DelBtn";
 import { Loader2 } from 'lucide-react';
+import { Helmet } from "react-helmet";
 
 function Cart() {
   const isEmail = useSelector((state) => state.authReducer.isEmail);
@@ -77,6 +78,13 @@ function Cart() {
 
   return (
     <div className="fixed top-0 left-0 flex justify-center items-center h-screen w-full bg-neutral-500 bg-opacity-70 z-50">
+       <Helmet>
+        {/* Page Title */}
+        <title>Your Cart | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
       <div className="bg-white p-6 sm:p-8 w-[90%] sm:w-[70%] lg:w-[40%] rounded-lg shadow-lg">
         <div className="text-xl font-bold text-gray-800 mb-4">Your Cart</div>
         <div className="h-60 sm:h-80 overflow-y-auto p-2 border border-gray-300 rounded">

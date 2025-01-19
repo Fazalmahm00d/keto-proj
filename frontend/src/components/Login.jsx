@@ -8,6 +8,7 @@ import { auth, provider } from "../../firebase-config";
 import { useMutation } from "@tanstack/react-query";
 import { loginGoogle, sendToBackend } from "../lib/authapi";
 import { Toast } from "./Toast";
+import { Helmet } from "react-helmet";
 
 function Login(props) {
   
@@ -161,6 +162,13 @@ function Login(props) {
 
   return (
     <div className="min-h-screen bg-[#7E5CAD] md:bg-[url('./src/assets/bg2.png')] bg-cover bg-no-repeat flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 px-6">
+         <Helmet>
+        {/* Page Title */}
+        <title>Login | My Awesome Website</title>
+        
+        {/* Meta Description */}
+        <meta name="description" content="Welcome to My Awesome Website!" />
+      </Helmet>
         {toast.isVisible && (
           <Toast
             message={toast.message}
