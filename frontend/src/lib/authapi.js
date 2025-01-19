@@ -4,11 +4,9 @@ import Cookies from "js-cookie";
 
 
 export async function sendToBackend(obj) {
-    console.log(obj.data,"data in func send2backend")
     try {
     
       const res=await api.post(obj.URL,obj.data);
-      console.log(res,"response from backend")
       return res
       // Update global state with user information
        // Navigate to the home page
@@ -19,7 +17,6 @@ export async function sendToBackend(obj) {
   }
   
 export async function loginGoogle(obj) {
-  console.log(obj,"object in api")
   try{
     const userResponse = await api.post("/api/users/google", {
       email: obj.email,

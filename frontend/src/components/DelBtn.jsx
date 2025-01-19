@@ -21,7 +21,6 @@ function DeleteBtnComponent(props) {
     const deleteMutate = useMutation({
         mutationFn: deleteItem,
         onSuccess: () => {
-            console.log("Deleted item");
             queryClient.invalidateQueries(["get cart data", isEmail]);
             setShowToast(true);
 

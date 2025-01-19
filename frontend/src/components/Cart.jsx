@@ -1,7 +1,6 @@
-import { useContext, useEffect, useState } from "react";
-import { CartContext } from "./contextAPI";
+import {  useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
 import DeleteBtnComponent from "./DelBtn";

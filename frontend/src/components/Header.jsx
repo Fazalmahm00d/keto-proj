@@ -6,7 +6,6 @@ import Cookies from "js-cookie";
 import { useQuery } from "@tanstack/react-query";
 import { getCartItem } from "../lib/cartapi";
 import { Toast } from "./Toast";
-import { Search } from "lucide-react";
 import SearchDropdown from "./SearchDropdown";
 
 function Header(props) {
@@ -15,24 +14,15 @@ function Header(props) {
     const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
     const isEmail=useSelector((state)=>state.authReducer.isEmail)
     const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
-    const cartItems=useSelector((state)=>state.authReducer.cartItems)
     const[length,setLength]=useState(0);
     const [isInputVisible, setIsInputVisible] = useState(false);
-    const [query, setQuery] = useState("");
   
     const handleSearchClick = () => {
       setIsInputVisible(!isInputVisible);
-      if (isInputVisible) {
-        setQuery(""); // Clear the input when closing
-        debouncedQuery(""); // Clear the search query
-      }
+      
     };
   
-    const handleInputChange = (e) => {
-      const value = e.target.value;
-      setQuery(value);
-      debouncedQuery(value);
-    };
+    
 
     const handleToast = (message, type) => {
       setToast({ message, type, isVisible: true });
@@ -88,8 +78,6 @@ function Header(props) {
     },[cartData,isEmail])
     
     useEffect(()=>{
-      console.log(isEmail,"email value")
-    console.log(isAuthenticate,"token value ")
     getCartItem()
     },[isAuthenticate])
     const { pathname } = useLocation();

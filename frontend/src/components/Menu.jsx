@@ -1,6 +1,5 @@
 import Header from "./Header";
 import Footer from "./Footer";
-import MenuItems from "./MenuItems";
 import { useEffect, useState } from "react";
 import { getAllProducts } from "../lib/productapi";
 import { useQuery } from "@tanstack/react-query";
@@ -19,9 +18,7 @@ function Menu(props) {
   const { data: productData, isLoading: productDataLoading, isError: productDataError } = useQuery({
     queryKey: ["get all products data"],
     queryFn: () => getAllProducts(),
-    onSuccess: (res) => {
-      console.log(res, "response in product")
-    }
+   
   });
 
   useEffect(() => {

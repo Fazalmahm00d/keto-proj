@@ -10,7 +10,6 @@ function AddBtnComponent(props) {
   const isEmail = useSelector((state) => state.authReducer.isEmail);
   const [showToast, setShowToast] = useState(false);
   const [errorToast, setErrorToast] = useState(false);
-  console.log(props.items,"props items")
   const queryClient = useQueryClient();
   const cartMutate = useMutation({
     mutationFn: updateCart,
@@ -21,7 +20,6 @@ function AddBtnComponent(props) {
       // If you have the cart data in the response
       if (response?.data?.user?.cart) {
         dispatch(dataAction.setCartArr(response.data.user.cart));
-        console.log("calling on success");
         // Optionally update the query data immediately
         queryClient.setQueryData(["get cart data"], response.data.user.cart);
         setShowToast(true);
@@ -31,14 +29,11 @@ function AddBtnComponent(props) {
       }
     },
     onError: (error) => {
-      console.log("inside on error")
-      console.log("Cart update error:", error);
       setErrorToast(true);
     }
   });
 
    function sendToFb(id) {
-    console.log("send2fb called");
     const obj = {
       isEmail,
       newCartItem: {
@@ -46,7 +41,6 @@ function AddBtnComponent(props) {
         quantity: 1
       }
     };
-    console.log("obj ",obj)
     cartMutate.mutate(obj);
   }
 

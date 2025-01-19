@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Search } from 'lucide-react';
 import { getAllProducts } from '../lib/productapi';
-import { Link, useNavigate } from 'react-router-dom';
+import {  useNavigate } from 'react-router-dom';
 
 const SearchDropdown = () => {
   const [query, setQuery] = useState('');
@@ -24,7 +24,6 @@ const SearchDropdown = () => {
                             response.data?.data || 
                             [];
         setAllProducts(productsArray);
-        console.log('Fetched products:', productsArray); // Debug log
       } catch (error) {
         console.error('Error fetching products:', error);
         setAllProducts([]); // Set empty array on error
@@ -40,7 +39,6 @@ const SearchDropdown = () => {
     setIsOpen(false);
     setQuery('');
   };
-  console.log(filteredProducts)
   // Handle click outside to close dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {

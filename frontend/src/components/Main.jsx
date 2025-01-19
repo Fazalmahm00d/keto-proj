@@ -22,7 +22,6 @@ import { Helmet } from 'react-helmet';
 
 
 function Main(props) {
-  const [menuItems, setMenuItems] = useState()
   const { data: productData, isLoading, isError } = useQuery({
     queryKey: ["get all products data"],
     queryFn: () => getAllProducts(),
@@ -34,7 +33,6 @@ function Main(props) {
         [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
       }
       const selected = shuffled.slice(0, 4);
-      console.log(selected);
       return selected;
     }
   });

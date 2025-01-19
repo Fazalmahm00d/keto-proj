@@ -1,14 +1,11 @@
 import { Link, useParams } from "react-router-dom"
 import Header from "./Header";
-import { useContext, useEffect, useState } from "react"; // Added useState
-import { CartContext } from "./contextAPI";
-import axios from "axios";
+import { useEffect, useState } from "react"; // Added useState
 import { useDispatch, useSelector } from "react-redux";
 import { dataAction } from "../ReduxStore/dataCart";
 import { updateCart } from "../lib/cartapi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getProductById } from "../lib/productapi";
-import { Loader2 } from 'lucide-react';
 import Footer from "./Footer";
 import { Helmet } from "react-helmet";
 
@@ -29,7 +26,6 @@ function Dynamic(){
             // If you have the cart data in the response
             if (response?.data?.user?.cart) {
                 dispatch(dataAction.setCartArr(response.data.user.cart));
-                console.log("calling on successs ")
                 // Optionally update the query data immediately
                 queryClient.setQueryData(["get cart data"], response.data.user.cart);
                 setShowToast(true);
@@ -38,7 +34,6 @@ function Dynamic(){
                 setTimeout(() => setShowToast(false), 3000);}
                     },
                     onError:(error)=>{
-                        console.error("err:", error)
                         console.log("Cart update error:", error);
                         setErrorToast(true);
                     }
@@ -46,9 +41,6 @@ function Dynamic(){
     const {data:productData,isLoading:productDataLoading,isError:productDataError}=useQuery({
         queryKey:["get product data"],
         queryFn:()=>getProductById(id),
-        onSuccess:(res)=>{
-            console.log(res,"response in product")
-        }
     })
 
     // Fetch product data when component mounts

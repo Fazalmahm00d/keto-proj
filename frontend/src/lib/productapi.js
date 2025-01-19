@@ -11,7 +11,6 @@ export async function getProductById(id) {
 
 
 export async function getAllProducts() {
-    console.log("get all products called")
     try{
         const response = await api.get('/api/products');
         return response;

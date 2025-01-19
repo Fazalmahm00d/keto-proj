@@ -9,7 +9,6 @@ const authSlice=createSlice({
     reducers:{
         logIn(state){
             state.isEmail=true;
-            console.log("log in executed in reducer")
         },
         logOut(state){
             state.isEmail=false;

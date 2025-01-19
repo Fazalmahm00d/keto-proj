@@ -15,7 +15,6 @@ function Login(props) {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
-  console.log("in the login page")
   const [isLogin, setIsLogin] = useState(true);
   const navigate = useNavigate();
   const [toast, setToast] = useState({ message: "", type: "", isVisible: false });
@@ -44,7 +43,6 @@ function Login(props) {
   const mutation=useMutation({
   mutationFn:sendToBackend,
   onSuccess:(res)=>{
-    console.log(res)
     const user = res?.data?.user; // Adjust based on your backend response
       const authToken = Cookies.set("authToken",user.idToken,{
           secure: true,
@@ -58,12 +56,6 @@ function Login(props) {
       }
 
       )
-
-      if (authToken) {
-        console.log("Token retrieved:", authToken);
-      } else {
-        console.log("No token found");
-      }
       dispatch(authAction.changeEmailValue(user.email));
       dispatch(authAction.changeTokenValue(user.idToken))
       navigate("/");
@@ -77,7 +69,6 @@ function Login(props) {
   const handleGoogleLogin = async () => {
     try {
       const result = await signInWithPopup(auth, provider);
-      console.log(result,"result from google login  ")
       // Extract user details
       const user =  result.user;
       // Extract tokens
@@ -97,10 +88,6 @@ function Login(props) {
         path:'/'
       });
 
-      console.log("User Info:", user);
-      console.log("Access Token:", accessToken);
-      console.log("ID Token:", idToken);
-      console.log(user.email,user.displayName)
       const obj= {
         email: user.email,
         username: user.displayName,
@@ -118,14 +105,12 @@ function Login(props) {
   const googleMutate=useMutation({
     mutationFn:loginGoogle,
     onSuccess:(userResponse)=>{
-      console.log(userResponse,"response from user")
           if (userResponse.status === 201 || 200) {
           handleToast(`Welcome, ${userResponse.data.user.username}!`, "success");
           setTimeout(()=>navigate("/"),2000)
           }
     },
     onError:(error)=>{
-      console.error("Mutation failed:", error.response?.data || error.message);
       handleToast("Failed to login", "alert-error");
 
     }
@@ -136,7 +121,6 @@ function Login(props) {
     const URL = isLogin ? logInURL : signUpURL;
 
     e.preventDefault();
-    console.log("signup called")
     const email = e.target.email.value;
     const password = e.target.password.value;
     let obj
@@ -156,7 +140,6 @@ function Login(props) {
             username
           }}
     }
-    console.log(obj,"obj before sending")
     mutation.mutate(obj);
   };
 

@@ -14,12 +14,10 @@ const CartProvider = (props) => {
             
             const response = await axios.get(`https://fir-db-7355f-default-rtdb.firebaseio.com/${isEmail}.json`)
             const data=response.data
-            console.log(data);
             const arr=[]
             for(let key in data){
                 arr.push({ id:key ,...data[key]});
             }
-            console.log(arr)
             setCartItems(arr)
         }
         catch (error) {
