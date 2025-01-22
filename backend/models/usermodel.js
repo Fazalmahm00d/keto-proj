@@ -10,6 +10,10 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
   },
+  profile:{
+          type:String,
+          unique:[true,"profile image already exists"]
+  },
   cart: [
     {
       productId: {
@@ -35,6 +39,6 @@ const userSchema = new mongoose.Schema({
   ],
 });
 
-const User = mongoose.model("user", userSchema);
+const User = mongoose.model("ketouser", userSchema);
 
 module.exports = User;

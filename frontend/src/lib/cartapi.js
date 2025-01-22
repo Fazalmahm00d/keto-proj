@@ -12,6 +12,31 @@ export async function updateCart(obj) {
     }
 }
 
+export async function updateProfile(obj) {
+  try {
+    const response = await api.put(`/user/${obj.isEmail}/${obj.publicId}`);
+    console.log(response,"response in api ")
+    // If everything went fine, return the response data
+    return response.data; // Assuming the response has data
+  } catch (error) {
+    console.error("Error in updating profile:", error);
+    throw error; // Rethrow the error to be caught by the calling function
+  }
+}
+
+export async function getUser(isEmail) {
+  try {
+    const response = await api.get(`/user/${isEmail}`);
+    console.log(response,"response in api ")
+    // If everything went fine, return the response data
+    return response.data; // Assuming the response has data
+  } catch (error) {
+    console.error("Error in updating profile:", error);
+    throw error; // Rethrow the error to be caught by the calling function
+  }
+}
+
+
 export async function getCartItem(isEmail){
     try {
         const response = await api.get(`/user/${isEmail}/cart`, {

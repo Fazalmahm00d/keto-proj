@@ -1,14 +1,17 @@
-import {  useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { useQuery } from "@tanstack/react-query";
-import { getCartItem } from "../lib/cartapi";
-import DeleteBtnComponent from "./DelBtn";
-import { Loader2 } from 'lucide-react';
 import { Helmet } from "react-helmet";
+import Footer from "./Footer"
+import Header from "./Header"
+import UserProfile from "./UserProfileUpload"
+import { getCartItem } from "../lib/cartapi";
+import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { Link } from "react-router-dom";
+import DeleteBtnComponent from "./DelBtn";
+import { Loader2 } from "lucide-react";
 
-function Cart() {
-  const isEmail = useSelector((state) => state.authReducer.isEmail);
+function Profile(){
+    const isEmail = useSelector((state) => state.authReducer.isEmail);
   const [cart, setCart] = useState();
   const [totalExpenses, setTotalExpenses] = useState(0);
 
@@ -36,11 +39,10 @@ function Cart() {
     return (
       <div className="flex items-center justify-center p-8">
         <Loader2 className="h-8 w-8 animate-spin text-primary" />
-        <span className="ml-2">Loading cart...</span>
+        <span className="ml-2">Loading profile...</span>
       </div>
     );
   }
-
   if (cartDataError) {
     return (
       <div className="p-4 rounded-md bg-red-50">
@@ -74,14 +76,19 @@ function Cart() {
       </div>
     );
   }
-
-  return (
-    <div className="fixed top-0 left-0 flex justify-center items-center h-screen w-full bg-neutral-500 bg-opacity-70 z-50">
-       <Helmet>
-        <title>Your Cart | My Awesome Website</title>
+    return (
+        <div className="bg-gray-100 ">
+            <Header/>
+            <Helmet>
+        {/* Page Title */}
+        <title>Your Profile | My Awesome Website</title>
+        
+        {/* Meta Description */}
         <meta name="description" content="Welcome to My Awesome Website!" />
       </Helmet>
-      <div className="bg-white p-6 sm:p-8 w-[90%] sm:w-[70%] lg:w-[40%] rounded-lg shadow-lg">
+            <div className="flex flex-col items-center my-10 ">
+            <UserProfile/>
+            <div className="bg-white  p-6 sm:p-8  sm:w-[70%] lg:w-[40%] rounded-lg">
         <div className="text-xl font-bold text-gray-800 mb-4">Your Cart</div>
         <div className="h-60 sm:h-80 overflow-y-auto p-2 border border-gray-300 rounded">
           {cartData?.length ? (
@@ -137,9 +144,11 @@ function Cart() {
             Buy Now
           </button>
         </div>
-      </div>
-    </div>
-  );
+            </div>
+            </div>
+            <Footer/>
+        </div>
+    )
 }
 
-export default Cart;
+export default Profile

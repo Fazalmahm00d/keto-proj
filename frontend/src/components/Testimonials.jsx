@@ -5,7 +5,7 @@ export const TestimonialCard = ({ data }) => {
   const { img, name, avtext, date, testimonial } = data;
   
   return (
-    <article className="w-full bg-[#f5eff5] h-[24rem] sm:h-auto  text-[rgba(61,8,27,0.75)] overflow-hidden rounded-lg shadow-sm transform transition-transform hover:scale-[1.02]">
+    <article className="w-full bg-[#f5eff5] h-[24rem] sm:h-auto  text-[rgba(61,8,27,0.75)] overflow-hidden rounded-lg shadow-sm transform transition-transform hover:scale-[1.02]  p-4 md:p-0">
       {/* Image Container */}
       <div className="relative pt-[75%] bg-gray-100">
         <img 
@@ -18,27 +18,27 @@ export const TestimonialCard = ({ data }) => {
         
         {/* Avatar Circle */}
         <div className="absolute left-1/2 bottom-0 transform -translate-x-1/2 translate-y-1/2">
-          <div className="flex items-center justify-center w-12 h-12 md:w-14 md:h-14 text-sm md:text-base font-medium bg-white rounded-full shadow-md border-2 border-gray-100">
+          <div className="flex items-center justify-center w-12 h-12 lg:w-16 lg:h-16 text-sm lg:text-lg font-medium bg-white rounded-full shadow-md border-2 lg:border-4 border-gray-100">
             {avtext}
           </div>
         </div>
       </div>
 
       {/* Content Section */}
-      <div className="relative px-4 pt-10 pb-6 md:px-6">
+      <div className="relative px-4 pt-10 pb-6 md:px-6 text-[rgba(61,8,27,0.75)]">
         <div className="text-center space-y-3">
           <div>
-            <h3 className="text-lg font-bold text-[#3d081bbf]">
+            <h3 className="text-lg lg:text-2xl font-bold ">
               {name}
             </h3>
-            <time className="text-xs text-gray-500 font-medium" dateTime={date}>
+            <time className="text-xs lg:text-sm  font-medium" dateTime={date}>
               {date}
             </time>
           </div>
 
           {/* Testimonial Text */}
           <div className="relative">
-            <p className="text-sm text-gray-600 leading-relaxed line-clamp-3">
+            <p className="text-sm lg:text-xl  leading-relaxed line-clamp-3">
               {testimonial}
             </p>
           </div>
@@ -101,8 +101,8 @@ const TestimonialsGrid = ({ testimonials }) => {
   return (
     <section id='testimonials' >
       {/* Grid layout for md+ screens */}
-      <div className="hidden md:block w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div data-testid="testimonials-grid" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-20 h-auto">
+      <div className="hidden md:block w-full md:px-[50px]">
+        <div data-testid="testimonials-grid" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-[20px] h-auto">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={`${testimonial.name}-${index}`} data={testimonial} />
           ))}

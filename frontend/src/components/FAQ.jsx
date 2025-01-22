@@ -12,19 +12,18 @@ function FAQ() {
 
     return (
         <div className="">
-             <Helmet>
-        {/* Page Title */}
-        <title>FAQ | My Awesome Website</title>
-        
-        {/* Meta Description */}
-        <meta name="description" content="Welcome to My Awesome Website!" />
-      </Helmet>
-            <Header/>
-            <h2 className="text-xl md:text-3xl font-semibold text-left container mx-auto text-gray-800 my-8 px-4">
+        <Helmet>
+            <title>FAQ | My Awesome Website</title>
+            <meta name="description" content="Welcome to My Awesome Website!" />
+        </Helmet>
+        <Header/>
+        <div className=" flex flex-col md:gap-6 items-center justify-center">
+            <div className="w-full">
+            <h2 className="text-xl md:text-3xl font-semibold text-left md:text-center text-gray-800  px-8">
                 Frequently Asked Questions
             </h2>
-            <div className="space-y-6 p-6 md:min-h-[40rem] md:container md:mx-auto ">
-                {/* FAQ Item 1 */}
+            </div>
+            <div className="space-y-6 p-6 md:min-h-[40rem] w-full md:container">
                 <div className="bg-white shadow-md rounded-lg ">
                     <button
                         onClick={() => toggleAccordion(0)}
@@ -55,7 +54,6 @@ function FAQ() {
                     )}
                 </div>
 
-                {/* FAQ Item 2 */}
                 <div className="bg-white shadow-md rounded-lg">
                     <button
                         onClick={() => toggleAccordion(1)}
@@ -86,7 +84,6 @@ function FAQ() {
                     )}
                 </div>
 
-                {/* FAQ Item 3 */}
                 <div className="bg-white shadow-md rounded-lg">
                     <button
                         onClick={() => toggleAccordion(2)}
@@ -117,7 +114,6 @@ function FAQ() {
                     )}
                 </div>
 
-                {/* FAQ Item 4 */}
                 <div className="bg-white shadow-md rounded-lg">
                     <button
                         onClick={() => toggleAccordion(3)}
@@ -148,8 +144,9 @@ function FAQ() {
                     )}
                 </div>
             </div>
-            <Footer/>
         </div>
+        <Footer/>
+    </div>
     );
 }
 

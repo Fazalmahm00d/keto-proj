@@ -78,3 +78,49 @@ exports.addToCart = async (req, res) => {
       res.status(500).json({ error: "Server error" });
     }
   }
+
+  exports.getUserProfile=async(req,res)=>{
+    const { email } =req.params;
+    try{
+      const user =await User.findOne({email})
+      if(!user){
+        return res.status(404).json({error: "User not found"})
+      }
+      res.status(200).json({message:"User found",user})
+    }catch (error) {
+      console.error("Error fetching cart:", error);
+      res.status(500).json({ error: "Server error" });
+    }
+  }
+  exports.addPublicId = async (req, res) => {
+    console.log("func called")
+
+    const { email, publicId } = req.params;
+    console.log(email,publicId)
+    // Validate input
+    if (!email || !publicId) {
+      return res.status(400).json({ error: "Email and Public ID are required" });
+    }
+  
+    try {
+      // Find the user and update the profile field
+      const user = await User.findOneAndUpdate(
+        { email }, // Filter by email
+        { profile: publicId }, // Update the profile field
+        { new: true, runValidators: true } // Return the updated document
+      );
+  
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+  
+      res.status(200).json({
+        message: "Profile ID updated successfully",
+        user, // Return the updated user object
+      });
+    } catch (error) {
+      console.error("Error updating profile ID:", error);
+      res.status(500).json({ error: "Server error" });
+    }
+  };
+  

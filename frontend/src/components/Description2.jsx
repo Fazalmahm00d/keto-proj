@@ -6,7 +6,7 @@ function Description2() {
         navigate('/menu')
     }
     return (
-        <div className="flex flex-col items-center justify-center  p-10  w-full md:max-w-6xl text-center font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
+        <div className="flex flex-col items-center justify-center px-8 py-10 md:p-10  w-full md:max-w-6xl text-center font-light text-[#3d081bbf] text-base sm:text-lg lg:text-xl">
             <p className="mt-6 tracking-wide">
                 At Ketodelia, we're passionate about providing <span className="font-medium">delicious, keto-friendly</span> meals that are not only good for you, but also taste amazing. Our restaurant, based in Toronto, offers <span className="font-medium">100% gluten-free</span>, low-carb cuisine that is carefully crafted using only the highest quality ingredients.
             </p>

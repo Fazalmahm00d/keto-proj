@@ -13,11 +13,13 @@ import { authAction } from './ReduxStore/Authenticate';
 import { useDispatch, useSelector } from 'react-redux';
 import Location from './components/Location';
 import FAQ from './components/FAQ';
+import Profile from './components/Profile';
+import { Toast } from './components/Toast';
 function App(){
   const dispatch=useDispatch();
+  const isEmail=useSelector((state)=>state.authReducer.isEmail)
   const isAuthenticate=useSelector((state)=>state.authReducer.isAuthenticate)
   const email=Cookies?.get("email")
-  
   function ScrollToHash() {
     const { hash } = useLocation();
 
@@ -37,12 +39,6 @@ function App(){
     dispatch(authAction.changeEmailValue(email))
     }
   },[email])
-
-  useEffect(()=>{
-    if(isAuthenticate){
-      dispatch(authAction.changeTokenValue(isAuthenticate))
-    }
-  },[isAuthenticate])
   return(
       <div>
         <ScrollToHash />
@@ -52,14 +48,12 @@ function App(){
             <Route path="/aboutus" element={ <AboutUs/>}/>
             <Route path="/contact" element={<Contact/>}/>
             <Route path="/login" element={<Login />}/>
-            <Route path='/cart' element={isAuthenticate ? <Cart/>:<Login />}/>
+            <Route path='/cart' element={isEmail && isAuthenticate ? <Cart/> : <div><Toast message={"Login to access Cart"}  onClose={()=>{console.log("Toast")}}/><Login /></div>}/>
             <Route path='/faq' element={<FAQ/>}/>
             <Route path='/menu/:id' element={<Dynamic/>}/>
             <Route path='/location' element={<Location/>}/>
+            <Route path="/profile" element={isEmail && isAuthenticate ? <Profile/> : <div><Toast message={"Login to access Profile"}  onClose={()=>{console.log("Toast")}}/><Login /></div>}/>
           </Routes>
-       
-       
-
       </div>
   
   )

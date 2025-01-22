@@ -34,7 +34,6 @@ function Menu(props) {
   }, [productData]);
 
   if (productDataLoading) {
-    // Show six placeholders while loading
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6 sm:p-10">
         {Array.from({ length: 9 }).map((_, index) => (
@@ -47,38 +46,36 @@ function Menu(props) {
   return (
     <div>
        <Helmet>
-        {/* Page Title */}
         <title>Menu | My Awesome Website</title>
-        
-        {/* Meta Description */}
         <meta name="description" content="Welcome to My Awesome Website!" />
       </Helmet>
-      <Header Authenticator={props.isAuthenticate} setIsAuthenticate={props.setIsAuthenticate}></Header>
+
+      <Header/>
       <div className="flex justify-center">
-        <div className='h-auto p-[20px] md:p-[10px] flex flex-col items-start w-full md:w-[80%]'>
-          <h1 className='font-bold text-2xl ml-8 mb-4'>Appetizers</h1>
-          <div className='mb-10  w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
+        <div className='h-auto p-4 md:p-[20px] flex flex-col items-start w-full md:w-[80%]'>
+          <h1 className='font-bold text-xl md:text-2xl ml-4 md:ml-8 mb-4'>Appetizers</h1>
+          <div className='mb-10  w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-4 lg:gap-8 '>
             {menuItems.appetizers.map((item) => {
               return <ProductCard key={item.id} data={item} />;
             })}
           </div>
           
-          <h1 className='font-bold text-2xl ml-8 mb-4'>Keto Breakfast</h1>
-          <div className='mb-10  w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
+          <h1 className='font-bold text-xl md:text-2xl ml-4 md:ml-8 mb-4'>Keto Breakfast</h1>
+          <div className='mb-10  w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around  gap-4 lg:gap-8 '>
             {menuItems.breakfastItems.map((item) => {
               return <ProductCard key={item.id} data={item} />;
             })}
           </div>
 
-          <h1 className='font-bold text-2xl ml-8 mb-4'>Salads</h1>
-          <div className='mb-10  w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3  justify-content-around  gap-2 sm:gap-4 lg:gap-8 '>
+          <h1 className='font-bold text-xl md:text-2xl ml-4 md:ml-8 mb-4'>Salads</h1>
+          <div className='mb-10  w-full  grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3  justify-content-around  gap-4 lg:gap-8 '>
             {menuItems.salads.map((item) => {
               return <ProductCard key={item.id} data={item} />;
             })}
           </div>
 
-          <h1 className='font-bold text-2xl ml-8 mb-4'>Keto Mains</h1>
-          <div className='mb-10  w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around gap-2 sm:gap-4 lg:gap-8 '>
+          <h1 className='font-bold text-xl md:text-2xl ml-4 md:ml-8 mb-4'>Keto Mains</h1>
+          <div className='mb-10  w-full grid grid-cols-1   lg:grid-cols-2 2xl:grid-cols-3 justify-content-around gap-4 lg:gap-8 '>
             {menuItems.mainDishes.map((item) => {
               return <ProductCard key={item.id} data={item} />;
             })}

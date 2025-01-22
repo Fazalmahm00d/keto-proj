@@ -10,8 +10,7 @@ import { loginGoogle, sendToBackend } from "../lib/authapi";
 import { Toast } from "./Toast";
 import { Helmet } from "react-helmet";
 
-function Login(props) {
-  
+function Login() {
   const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [passwordMessage, setPasswordMessage] = useState("");
@@ -116,7 +115,6 @@ function Login(props) {
     }
   })
 
-  // Form submission handler
   const handleSubmit = (e) => {
     const URL = isLogin ? logInURL : signUpURL;
 
@@ -144,15 +142,13 @@ function Login(props) {
   };
 
   return (
-    <div className="min-h-screen bg-[#7E5CAD] md:bg-[url('./src/assets/bg2.png')] bg-cover bg-no-repeat flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 px-6">
-         <Helmet>
-        {/* Page Title */}
-        <title>Login | My Awesome Website</title>
-        
-        {/* Meta Description */}
-        <meta name="description" content="Welcome to My Awesome Website!" />
-      </Helmet>
-        {toast.isVisible && (
+      <div className="min-h-screen bg-[#7E5CAD] md:bg-[url('./src/assets/bg2.png')] bg-cover bg-no-repeat flex flex-col md:flex-row items-center justify-center gap-8 md:gap-20 px-6">
+        <Helmet>
+          <title>Login | My Awesome Website</title>
+          <meta name="description" content="Welcome to My Awesome Website!" />
+        </Helmet>
+        {
+          toast.isVisible && (
           <Toast
             message={toast.message}
             type={toast.type}

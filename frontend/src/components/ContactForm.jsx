@@ -1,6 +1,6 @@
 function ContactForm() {
     return (
-        <form className="flex flex-col w-full max-w-2xl gap-4 sm:m-10" action="">
+        <form className="flex flex-col w-full px-4  gap-4 py-10" action="">
             <h1 className="text-2xl font-bold mb-2">Contact Form</h1>
             
             <div className="w-full flex flex-col sm:flex-row gap-6">
@@ -28,7 +28,7 @@ function ContactForm() {
             ></textarea>
             
             <button 
-                className="bg-[#94619a] text-white px-16 py-4 uppercase font-medium text-base rounded-full mt-2 hover:bg-[#815287] transition-colors duration-300 w-fit"
+                className="bg-[#94619a] text-white px-8 py-2 px-16 py-4 uppercase font-medium text-base rounded-full mt-2 hover:bg-[#815287] transition-colors duration-300 w-fit"
             >
                 Send
             </button>

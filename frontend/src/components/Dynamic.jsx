@@ -43,19 +43,7 @@ function Dynamic(){
         queryFn:()=>getProductById(id),
     })
 
-    // Fetch product data when component mounts
-    // useEffect(() => {
-    //     const fetchProductData = async () => {
-    //         try {
-    //             const response = await axios.get(`https://ketodalia.onrender.com/api/products/${id}`);
-    //             setFilteredData(response.data.product);
-    //         } catch (error) {
-    //             console.error("Error fetching product:", error);
-    //         }
-    //     };
-
-    //     fetchProductData();
-    // }, [id]);
+    
     useEffect(()=>{
         setFilteredData(productData)
     },[productData])
@@ -72,27 +60,23 @@ function Dynamic(){
         cartMutate.mutate(obj)
     }   
         
-    // Show loading state while data is being fetched
     if (!filteredData) {
         return <div>
           <Header/>
           <div className="min-h-screen flex justify-center items-center">
-          <div className="h-16 w-16 aspect-square rounded-full border-8 border-[rgba(61,8,27,0.75)]  border-t-transparent border-b-transparent animate-spin"></div>
-          </div><Footer/>
+            <div className="h-16 w-16 aspect-square rounded-full border-8 border-[rgba(61,8,27,0.75)]  border-t-transparent border-b-transparent animate-spin"></div>
+          </div>
+          <Footer/>
         </div>;
     }
     
     return(
-        <div>
-          <Helmet>
-        {/* Page Title */}
-        <title>{filteredData?.name}</title>
-        
-        {/* Meta Description */}
-        <meta name="description" content="Welcome to My Awesome Website!" />
-      </Helmet>
+      <div>
+        <Helmet>
+          <title>{filteredData?.name}</title>
+          <meta name="description" content="Welcome to My Awesome Website!" />
+        </Helmet>
         <Header />
-        
         <div className="px-4 py-6 sm:px-6 md:px-10 lg:px-20 xl:px-32">
           {showToast && (
             <div className="fixed toast toast-top toast-end">
@@ -121,23 +105,24 @@ function Dynamic(){
               </div>
             </div>
           )}
-          {errorToast && (
-  <div className="fixed top-0 right-0 m-4 z-50">
-    <div className="alert alert-error shadow-lg flex items-center gap-2">
-      
-      <span className="font-semibold text-white">
-       Log In to order
-      </span>
-      <button
-        className="btn btn-xs btn-circle btn-outline text-white hover:bg-red-700"
-        onClick={() => setErrorToast(false)}
-        aria-label="Close notification"
-      >
-        ✕
-      </button>
-    </div>
-  </div>
-)}
+          {
+            errorToast && (
+            <div className="fixed top-0 right-0 m-4 z-50">
+              <div className="alert alert-error shadow-lg flex items-center gap-2">
+                
+                <span className="font-semibold text-white">
+                Log In to order
+                </span>
+                <button
+                  className="btn btn-xs btn-circle btn-outline text-white hover:bg-red-700"
+                  onClick={() => setErrorToast(false)}
+                  aria-label="Close notification"
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+          )}
           <div>
             <Link to="/menu">
               <button className="text-[#512b55] underline">Back to menu</button>
@@ -169,7 +154,6 @@ function Dynamic(){
         </div>
         <Footer/>
       </div>
-      
     )
 }
 
