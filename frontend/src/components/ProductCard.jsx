@@ -6,15 +6,15 @@ function ProductCard(props) {
   return (
     <Link to={`/menu/${props.data._id}`}>
     <div className="h-auto  md:h-[18rem] p-4 md:p-6 bg-white shadow-lg rounded-lg flex flex-col md:flex-row gap-4 md:gap-6">
-    <div className="md:flex-1 md:max-w-[400px]">
+    <div className="md:w-1/2 md:flex-1 md:max-w-[400px]">
       <img
         src={props.data.img}
         alt={props.data.name}
-        className="w-full h-[200px] sm:h-[250px] md:h-full object-cover rounded-lg border-2 border-gray-200"
+        className=" h-[200px] w-full sm:h-[250px] md:h-full object-cover rounded-lg border-2 border-gray-200"
       />
     </div>
     
-    <div className="flex flex-col justify-between p-4">
+    <div className="md:w-1/2 flex flex-col justify-between p-4">
       <h3 className="text-xl md:text-2xl font-semibold text-gray-800">{props.data.name}</h3>
       
       <p className="text-lg md:text-xl text-gray-600 mt-3 md:mt-2 flex items-center">

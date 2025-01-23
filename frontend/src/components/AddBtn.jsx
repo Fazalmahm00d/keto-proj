@@ -99,7 +99,7 @@ function AddBtnComponent(props) {
     e.stopPropagation();
     sendToFb(props.item);
   }}
-  className={`border-2 border-[rgba(61,8,27,0.75)] rounded-3xl p-3 w-full my-2 sm:w-48 text-base text-[rgba(61,8,27,0.75)] font-medium
+  className={`border-2 border-[rgba(61,8,27,0.75)] rounded-3xl p-3 w-full my-2  text-base text-[rgba(61,8,27,0.75)] font-medium
     ${cartMutate.isPending ? 'bg-gray-300 cursor-not-allowed' : 'bg-transparent hover:bg-[rgba(61,8,27,0.75)] hover:text-white'} 
      sm:transform-none transition-colors duration-300`}
 >
