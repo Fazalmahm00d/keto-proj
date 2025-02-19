@@ -1,7 +1,7 @@
 function Banner() {
     return (
       <div className="flex justify-center items-center px-4 py-10">
-        <div className="flex flex-col lg:flex-row w-full lg:w-[70%] h-auto lg:h-[450px] border-2 rounded-lg border-gray-900 shadow-[black_2px_8px_2px_0px] overflow-hidden">
+        <div className="container max-w-7xl lg:mx-auto lg:px-0 flex flex-col lg:flex-row w-full  h-auto lg:h-[450px] border-2 rounded-lg border-gray-900 shadow-[black_2px_8px_2px_0px] overflow-hidden">
           <div className="flex justify-start items-center w-full lg:w-[50%] p-6 lg:pl-10">
             <div className="text-center lg:text-left">
               <div className="text-lg md:text-xl font-medium">From Our Bakery</div>

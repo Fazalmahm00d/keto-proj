@@ -11,7 +11,7 @@ function Footer() {
 
   return (
     <div className="bg-[#f5eff5] text-[#3d091bbf] text-l">
-      <div className="py-10 px-4 md:px-8">
+      <div className="container max-w-7xl lg:mx-auto lg:px-0 py-10 px-4 md:px-8">
         <div className="flex flex-wrap justify-evenly items-start gap-6 md:gap-10">
           <div className="w-full sm:w-[40%] md:w-[25%] lg:w-[20%]">
             <h2 className="font-bold text-xl">Contact us</h2>

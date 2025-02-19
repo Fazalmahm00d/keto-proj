@@ -51,8 +51,8 @@ function Menu(props) {
       </Helmet>
 
       <Header/>
-      <div className="flex justify-center">
-        <div className='h-auto p-4 md:p-[20px] flex flex-col items-start w-full '>
+      <div className="flex justify-center ">
+        <div className='container max-w-7xl lg:mx-auto lg:px-0 h-auto p-4 md:p-[20px] flex flex-col items-start w-full '>
           <h1 className='font-bold text-xl md:text-2xl ml-4 md:ml-8 mb-4'>Appetizers</h1>
           <div className='mb-10  w-full grid grid-cols-1 md:grid-cols-2   lg:grid-cols-3 justify-content-around  gap-4 lg:gap-8 '>
             {menuItems.appetizers.map((item) => {

@@ -17,7 +17,7 @@ function FAQ() {
             <meta name="description" content="Welcome to My Awesome Website!" />
         </Helmet>
         <Header/>
-        <div className=" flex flex-col md:gap-6 items-center justify-center">
+        <div className="container max-w-7xl lg:mx-auto lg:px-0 flex flex-col md:gap-6 items-center justify-center">
             <div className="w-full">
             <h2 className="text-xl md:text-3xl font-semibold text-left md:text-center text-gray-800  px-8">
                 Frequently Asked Questions

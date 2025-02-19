@@ -53,17 +53,17 @@ function Main() {
       <Header className='sticky'/>
       <MainSection />
  
-      <div className='flex flex-col md:flex-row w-full justify-center min-h-[200px] items-center px-4 md:px-[50px] py-8 gap-4'>
+      <div className='container max-w-7xl lg:mx-auto lg:px-0 flex flex-col md:flex-row w-full justify-center min-h-[200px] items-center px-4 md:px-[50px] lg:px-0 py-8 gap-4'>
         <Cards data="Order Now, Enjoy Keto Tonight!"/>
         <Cards data="Transparency You Can Trust: Every Ingredient Listed"/>
         <Cards data="Safe for Diabetes, Celiac, and Keto-Lovers Alike!"/>
       </div>
 
-      <div className='flex flex-col w-full justify-center h-auto px-4 py-10 md:p-[50px] items-center'>
+      <div className='container max-w-7xl lg:mx-auto lg:px-0 flex flex-col w-full justify-center h-auto px-4 py-10 md:p-[50px] lg:p-0 items-center'>
         <div className='text-2xl md:text-4xl m-6 md:m-10 font-bold text-[rgba(61,8,27,0.75)]'>
           Most Loved
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-4 w-full h-full gap-6 md:gap-20  md:px-20">
+        <div className="grid grid-cols-1 sm:grid-cols-2 items-center justify-center lg:grid-cols-4 w-full h-full gap-6 md:gap-20  md:px-20 lg:px-0">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, index) => (
             <CategoriesLoadingFallback key={index} />
@@ -87,7 +87,7 @@ function Main() {
         <div className='text-2xl md:text-4xl font-bold text-[rgba(61,8,27,0.75)] m-6 md:m-10 text-center '>
           Browse By Category
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full justify-center items-center gap-6 md:gap-[20px]  md:px-[50px]'>
+        <div className='container max-w-7xl lg:mx-auto lg:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full justify-center items-center gap-6 md:gap-[20px]  md:px-[50px]'>
           <Category 
             img="https://www.ketodelia.ca/cdn/shop/products/AlmondFlourWaffles.jpg?v=1673029390&width=535" 
             data="All Day Keto Breakfast"

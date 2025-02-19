@@ -101,7 +101,7 @@ const TestimonialsGrid = ({ testimonials }) => {
   return (
     <section id='testimonials' >
       {/* Grid layout for md+ screens */}
-      <div className="hidden md:block w-full md:px-[50px]">
+      <div className="hidden md:block container max-w-7xl lg:mx-auto lg:px-0 w-full md:px-[50px]">
         <div data-testid="testimonials-grid" className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-[20px] h-auto">
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={`${testimonial.name}-${index}`} data={testimonial} />

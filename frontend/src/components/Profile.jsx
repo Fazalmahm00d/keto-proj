@@ -77,20 +77,18 @@ function Profile(){
     );
   }
     return (
-        <div className="bg-gray-100 ">
-            <Header/>
+        <div className="">
             <Helmet>
-        {/* Page Title */}
-        <title>Your Profile | My Awesome Website</title>
+              <title>Your Profile | My Awesome Website</title>
+              <meta name="description" content="Welcome to My Awesome Website!" />
+            </Helmet>
+            <Header/>
         
-        {/* Meta Description */}
-        <meta name="description" content="Welcome to My Awesome Website!" />
-      </Helmet>
-            <div className="flex flex-col items-center my-10 ">
+            <div className="container max-w-7xl lg:mx-auto flex flex-col items-center my-10 ">
             <UserProfile/>
             <div className="bg-white  p-6 sm:p-8  sm:w-[70%] lg:w-[40%] rounded-lg">
-        <div className="text-xl font-bold text-gray-800 mb-4">Your Cart</div>
-        <div className="h-60 sm:h-80 overflow-y-auto p-2 border border-gray-300 rounded">
+              <div className="text-xl font-bold text-gray-800 mb-4">Your Cart</div>
+                <div className="h-60 sm:h-80 overflow-y-auto p-2 border border-gray-300 rounded">
           {cartData?.length ? (
             cartData.map((item) => (
               <div

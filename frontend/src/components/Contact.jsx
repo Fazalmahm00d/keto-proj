@@ -12,11 +12,11 @@ function Contact() {
             <meta name="description" content="Welcome to My Awesome Website!" />
             </Helmet>
             <Header/>
-            <div className="flex flex-col items-center justify-center ">
-                <div className="hidden sm:block w-full max-w-4xl">
+            <div className="container max-w-7xl lg:mx-auto lg:px-10 flex flex-col items-center justify-center ">
+                <div className="hidden sm:block w-full ">
                     <Description3></Description3>
                 </div>
-                <div className="w-full max-w-4xl ">
+                <div className="w-full  ">
                     <ContactForm></ContactForm>
                 </div>
             </div>

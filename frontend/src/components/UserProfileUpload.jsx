@@ -87,7 +87,7 @@ const UserProfile = () => {
     }
   },[userData])
   return (
-    <div className="flex flex-col items-center justify-start  bg-gray-100 py-10">
+    <div className="flex flex-col items-center justify-start  bg-gray-100 min-w-[300px] py-10">
         {showToast && (
             <div className="fixed toast toast-top toast-end">
               <div className="alert alert-success shadow-lg flex items-center gap-2">

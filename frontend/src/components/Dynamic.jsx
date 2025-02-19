@@ -77,7 +77,7 @@ function Dynamic(){
           <meta name="description" content="Welcome to My Awesome Website!" />
         </Helmet>
         <Header />
-        <div className="px-4 py-6 sm:px-6 md:px-10 lg:px-20 xl:px-32">
+        <div className="container max-w-7xl lg:mx-auto lg:px-0 px-4 py-6 sm:px-6 md:px-10 ">
           {showToast && (
             <div className="fixed toast toast-top toast-end">
               <div className="alert alert-success shadow-lg flex items-center gap-2">

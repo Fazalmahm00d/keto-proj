@@ -11,13 +11,13 @@ function MainSection() {
       <div className="relative w-full">
           <div className="min-h-[300px] md:h-[560px] bg-[rgba(#000000)] bg-gradient-to-r from-[rgba(100,13,152,0.3)] to-[rgba(100,13,152,0.1)]">
               <div className='absolute w-full  md:w-[40%] h-full flex flex-col justify-center items-start text-[#3d081b] px-4 md:ml-[7rem] text-center md:text-left z-10'>
-                  <h1 className='text-3xl text-left md:text-center md:text-5xl font-bold leading-tight'>
+                  <h1 className='text-3xl text-left  md:text-5xl font-bold leading-tight'>
                     LESS CARBS,
                     <br className="md:hidden" /> 
                     MORE DELICIOUS
                   </h1>
      
-                  <p className='text-lg text-left md:text-center w-1/2 md:text-xl mt-3 font-bold font-mono  '>
+                  <p className='text-lg text-left md:text-center md:text-xl mt-3 font-bold font-mono  '>
                     KETO FRIENDLY LOW CARB 100% GLUTEN FREE
                   </p>
      

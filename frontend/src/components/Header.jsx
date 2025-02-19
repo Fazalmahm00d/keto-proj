@@ -95,12 +95,12 @@ function Header() {
 
     
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <div className='banner hidden md:block bg-[rgba(100,13,152,1)] text-white w-full py-2 text-center text-sm md:text-base'>
           Order now and enjoy instant delivery for orders over $25
       </div>
             
-      <div className='flex flex-col my-4  md:flex-row bg-white justify-between items-center w-full px-4 py-2 md:h-[100px] md:px-8'>
+      <div className='container lg:mx-auto max-w-7xl flex flex-col my-4  md:flex-row bg-white justify-between items-center w-full px-4 py-2 md:h-[100px] md:px-8'>
         <Link to="/" className="py-2">
           {
             toast.isVisible && (

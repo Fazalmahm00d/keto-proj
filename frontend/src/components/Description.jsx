@@ -1,6 +1,6 @@
 function Description() {
     return (
-      <div className="flex w-full justify-center items-center md:px-10  md:py-10">
+      <div className="container max-w-7xl lg:mx-auto lg:px-0 flex w-full justify-center items-center md:px-10  md:py-10">
         <div className="text-[#3d081b] w-full text-center ">
           <h2 className="font-bold text-2xl md:text-3xl lg:text-6xl leading-10">
             When yummy meets healthy
