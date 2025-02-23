@@ -10,15 +10,17 @@ const userSchema = new mongoose.Schema({
   username: {
     type: String,
   },
-  profile:{
-          type:String,
-          unique:[true,"profile image already exists"]
+  profile: {
+    type: String,
+    default: function () {
+      return `profile_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+    }, 
   },
   cart: [
     {
       productId: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product", // Reference to the Product model
+        ref: "product",
         required: true,
       },
       quantity: {
@@ -32,7 +34,7 @@ const userSchema = new mongoose.Schema({
     {
       product: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "product", // Reference to the Product model
+        ref: "product",
         required: true,
       },
     },
@@ -42,3 +44,4 @@ const userSchema = new mongoose.Schema({
 const User = mongoose.model("ketouser", userSchema);
 
 module.exports = User;
+

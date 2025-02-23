@@ -24,7 +24,7 @@ export async function loginGoogle(obj) {
   });
   if (userResponse.status === 200 || userResponse.status === 201) {
     // Set UI-related cookies
-    Cookies.set('isLoggedIn', 'true', {
+    Cookies.set('authToken', 'true', {
       secure: true,
       expires: 1/24, // 1 hour
       path: '/'

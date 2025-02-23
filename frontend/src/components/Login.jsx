@@ -63,6 +63,21 @@ function Login() {
     console.error("Mutation failed:", error.response?.data || error.message);
   }
  })
+ // Toggle login/signup mode
+ const googleMutate=useMutation({
+  mutationFn:loginGoogle,
+  onSuccess:(userResponse)=>{
+        if (userResponse.status === 201 || 200) {
+        handleToast(`Welcome, ${userResponse.data.user.username}!`, "success");
+        setTimeout(()=>navigate("/"),2000)
+        }
+  },
+  onError:(error)=>{
+    handleToast("Failed to login", "alert-error");
+
+  }
+})
+
 
 
   const handleGoogleLogin = async () => {
@@ -100,21 +115,7 @@ function Login() {
         handleToast("Failed to login", "alert-error");
       }
     };
-  // Toggle login/signup mode
-  const googleMutate=useMutation({
-    mutationFn:loginGoogle,
-    onSuccess:(userResponse)=>{
-          if (userResponse.status === 201 || 200) {
-          handleToast(`Welcome, ${userResponse.data.user.username}!`, "success");
-          setTimeout(()=>navigate("/"),2000)
-          }
-    },
-    onError:(error)=>{
-      handleToast("Failed to login", "alert-error");
-
-    }
-  })
-
+  
   const handleSubmit = (e) => {
     const URL = isLogin ? logInURL : signUpURL;
 
